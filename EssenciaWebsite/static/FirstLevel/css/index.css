@@ -1,0 +1,39 @@
+/* ----------------------------------parameters for 4PS in bottom----------- */
+.princ{
+width:182px;
+padding-left:1250px;
+padding-top:500px;
+}
+
+/* --------------------------------THIS IS FOR ALIGNNMENT OF CENTER TEXT------------------- */
+
+ .text-box{
+     width:90;
+     color:rgb(242, 217, 56);
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform:translate(-50%,-50%);
+     text-align: center;
+ }
+
+ /* --------------------------THIS IS FOR VIEW US MORE BUTTON PADDING------------------------ */
+ .hero-btn{
+   display: inline-block;
+   text-decoration:none;
+   color:black;
+   border: 1px solid black;
+   padding: 11px 10px;
+   font-size: 13px;
+   background: #d3ae6d;
+   position: relative;
+   cursor: pointer;
+ }
+
+ /* ----------------------------------THIS IS VIEW US MORE BUTTON AFTER HOVER----------------------- */
+ .hero-btn:hover{
+   border:1px solid black;
+   border-radius: 85px;
+   background: #d3ae6d;
+   transition: 1.5s;
+ }

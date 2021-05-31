@@ -1,0 +1,92 @@
+/* ------------------------------------------------MAINTAINING THE MARGIN AND PADDING OF WHOLE NAVE BAR--------------------- */
+ UL
+ {
+  MARGIN:0PX;
+  PADDING: 2PX;
+  LIST-STYLE: NONE;
+  float:left;
+  background:none;
+}
+/* -----------------------------------------TO MAKE THE NAVBAR AT RIGHT-------------------------- */
+ .nav
+ {
+  float:right;
+  padding:34px 38px;
+}
+
+/* ----------------------------------------THIS IS FOR LOGO AT NAV BAR ------------------------- */
+
+.img
+{
+  width:50px;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+/* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR PARAMETERS)-------------- */
+UL LI
+{
+  FLOAT:left;
+  WIDTH: 140PX;
+  HEIGHT: 33PX;
+  BACKGROUND:none;
+  OPACITY:.8;
+  LINE-HEIGHT:31PX;
+  MARGIN-RIGHT: 3PX
+}
+
+/* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR TEXT DECORATIONS)----------------- */
+
+UL LI A
+{
+ TEXT-DECORATION: NONE;
+ COLOR:WHITE;
+ DISPLAY: BLOCK;
+ TEXT-ALIGN: CENTER;
+ FONT-SIZE: 14PX;
+}
+
+
+/* ---------------------------------THIS FOR THE LINE WHICH IS SHOWN BELOW(DESIGN line shown below)-------------------- */
+
+ul li::after
+{
+ content:'';
+ width:0%;
+ height:2px;
+ background:rgba(211,174,109,255);
+ display: block;
+ transition: 1s;
+}
+/* ----------------------------------------THIS IS TO SHOW LINE AFTER HOVER---------------------- */
+  ul li:hover::after
+  {
+    width:100%;
+ }
+
+ /* -------------------------------------AFTER HOVER DESIGN IN NAV BAR (INCLUDING DROPDOWN)------------------------- */
+ UL LI A:HOVER{
+   BACKGROUND-COLOR:NONE;
+
+ }
+ /* ------------------------------TO HIDE DROPDOWN MENU-------------------- */
+ UL LI UL LI{
+   DISPLAY:NONE;
+ }
+
+ /* ------------------------------------TO SHOW DROPDOWN MENU AFTER HOVER--------------------- */
+ UL LI:HOVER UL LI {
+   DISPLAY: BLOCK;
+ }
+/* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
+ul .log a{
+ text-decoration: none;
+  display:block;
+  padding: 3px 13px;
+  color: black;
+  font-size: 17px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background:linear-gradient(-45deg, #FFE000 ,#e65c00);
+  transition: 0.25s;
+  cursor: pointer;
+}

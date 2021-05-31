@@ -1,0 +1,56 @@
+{% extends 'FirstLevel/base.html' %}
+{% load static %}
+{% block body_block %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/index.css' %}">
+<style>
+@font-face {
+   font-family: Accidental Presidency ;
+   src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+}
+
+@font-face {
+   font-family: Arial Narrow;
+   src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+}
+
+body{
+  background-color: BLACK;
+}
+
+ .text-box h1{
+   font-size: 40px;
+   color: rgba(211,174,109,255);
+   text-shadow:2px 3px black;
+ }
+
+ .text-box1{
+    font-family:'Accidental Presidency';
+}
+
+ .text-box p{
+   margin:26px 0px 40px;
+   font-size: 18px;
+   color: white;
+   font-family:'Arial Narrow', ARIALNB_2 ;
+ }
+
+</style>
+
+<body>
+
+    <div class="text-box">
+            <h1 class="text-box1">Essencia Outsourcing Services Pvt. Ltd.</h1>
+            <p class="para">Essencia In Outsourcing Business brings to the reality <br>Purest & 360 degree encompassing business practices to meets its customers Cred-Coll needs.</p>
+            <a href="#" class="hero-btn"><strong>VISIT US TO KNOW MORE</strong></a>
+    </div>
+
+<img class="princ" src="{% static 'FirstLevel/images/4ps.png' %}"></img>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/base.css' %}">
+
+<body>
+  <section class="header">
+    <nav>
+        <UL class="img"> <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></ul>
+          <UL class="nav" >
+              <LI><A HREF="#" TARGET= "C"><strong>HOME</strong></A></LI>
+                <LI><A HREF="#" TARGET= "C"><strong>VISION / MISSION</strong></A></LI>
+                <LI><A HREF= "#" TARGET= "C"><strong>ABOUT US</strong></A>
+                  <UL class="drop">
+                      <LI><A HREF= "#" TARGET= "C"><strong>OUR STRENGTH</strong></A></LI>
+                      <LI><A HREF= "#" TARGET= "C"><strong>OUR PRINCIPLES</strong></A></LI>
+                      <LI><A HREF= "#" TARGET= "C"><strong>HIERARCHY</strong></A></LI>
+                      <LI><A HREF= "#" TARGET= "C"><strong>OUR CLIENTS</strong></A></LI>
+                  </UL>
+                </LI>
+                    <LI><a href="#"><strong>WHAT WE DO !</strong></a></LI>
+                    <LI ><A HREF= "#" TARGET= "C"><strong>CONTACT US</strong></a>
+                      <UL class="drop">
+                          <LI><A HREF= "#" TARGET= "C"><strong>WANT TO JOIN</strong></A></LI>
+                          <LI><A HREF= "#" TARGET= "C"><strong>PARTNER WITH US</strong></A></LI>
+                      </UL>
+                    </li>
+
+          <ul class="log">
+          <a><strong>LOGIN</strong></a>
+          </ul>
+        </ul>
+
+    </nav>
+      {% block body_block %}
+
+      {% endblock %}
+</body>
+</html>

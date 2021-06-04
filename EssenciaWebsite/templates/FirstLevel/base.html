@@ -9,34 +9,33 @@
     <link rel="stylesheet" href="{% static 'FirstLevel/css/base.css' %}">
 
 <body>
-  <section class="header">
-    <nav>
-        <UL class="img"> <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></ul>
-          <UL class="nav" >
-              <LI><A HREF="#" TARGET= "C"><strong>HOME</strong></A></LI>
-                <LI><A HREF="#" TARGET= "C"><strong>VISION / MISSION</strong></A></LI>
-                <LI><A HREF= "#" TARGET= "C"><strong>ABOUT US</strong></A>
-                  <UL class="drop">
-                      <LI><A HREF= "#" TARGET= "C"><strong>OUR STRENGTH</strong></A></LI>
-                      <LI><A HREF= "#" TARGET= "C"><strong>OUR PRINCIPLES</strong></A></LI>
-                      <LI><A HREF= "#" TARGET= "C"><strong>HIERARCHY</strong></A></LI>
-                      <LI><A HREF= "#" TARGET= "C"><strong>OUR CLIENTS</strong></A></LI>
-                  </UL>
-                </LI>
-                    <LI><a href="#"><strong>WHAT WE DO !</strong></a></LI>
-                    <LI ><A HREF= "#" TARGET= "C"><strong>CONTACT US</strong></a>
-                      <UL class="drop">
-                          <LI><A HREF= "#" TARGET= "C"><strong>WANT TO JOIN</strong></A></LI>
-                          <LI><A HREF= "#" TARGET= "C"><strong>PARTNER WITH US</strong></A></LI>
-                      </UL>
-                    </li>
-
-          <ul class="log">
+    <NAV>
+        <UL class="img">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" >
+            <LI><A HREF="#" TARGET= "C"><strong>HOME</strong></A></LI>
+            <LI><A HREF="#" TARGET= "C"><strong>VISION / MISSION</strong></A></LI>
+            <LI><A HREF= "#" TARGET= "C"><strong>ABOUT US</strong></A>
+                <UL class="drop">
+                    <LI><A HREF= "#" TARGET= "C"><strong>OUR STRENGTH</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C"><strong>OUR PRINCIPLES</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C"><strong>OUR CLIENTS</strong></A></LI>
+                </UL>
+            </LI>
+            <LI><a href="#"><strong>WHAT WE DO !</strong></a></LI>
+            <LI ><A HREF= "#" TARGET= "C"><strong>CONTACT US</strong></a>
+                <UL class="drop">
+                    <LI><A HREF= "#" TARGET= "C"><strong>DIRECTORS</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C"><strong>WANT TO JOIN</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C"><strong>PARTNER WITH US</strong></A></LI>
+                </UL>
+            </li>
+          <UL class="log">
           <a><strong>LOGIN</strong></a>
-          </ul>
-        </ul>
-
-    </nav>
+          </UL>
+        </UL>
+    </NAV>
       {% block body_block %}
 
       {% endblock %}

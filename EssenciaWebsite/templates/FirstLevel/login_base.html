@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/base.css' %}">
+
+<body>
+    <NAV>
+        <UL class="img">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="margin-bottom:50px;">
+            <LI><A HREF="{% url 'basic_app:index' %}" TARGET= "C" style="padding-left:0px"><strong>HOME</strong></A></LI>
+            <LI><A HREF="#" TARGET= "C" style="padding-left:0px"><strong>VISION / MISSION</strong></A></LI>
+            <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>ABOUT US</strong></A>
+                <UL class="drop">
+                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>OUR STRENGTH</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>OUR PRINCIPLES</strong></A></LI>
+                    <LI><A HREF= "{% url 'basic_app:clients' %}" TARGET= "C" style="padding-left:0px"><strong>OUR CLIENTS</strong></A></LI>
+                </UL>
+            </LI>
+            <LI><a href="#" style="padding-left:0px"><strong>WHAT WE DO !</strong></a></LI>
+            <LI ><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>CONTACT US</strong></a>
+                <UL class="drop">
+                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>DIRECTORS</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>WANT TO JOIN</strong></A></LI>
+                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>PARTNER WITH US</strong></A></LI>
+                </UL>
+            </li>
+          <UL class="log">
+          <A HREF="{% url 'basic_app:user_login' %}"><strong>LOGIN</strong></A>
+          </UL>
+        </UL>
+    </NAV>
+      {% block body_block %}
+
+      {% endblock %}
+</body>
+</html>

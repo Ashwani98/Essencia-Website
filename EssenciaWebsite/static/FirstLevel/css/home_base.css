@@ -1,0 +1,92 @@
+BODY{
+    BACKGROUND-REPEAT:NO-REPEAT;
+    BACKGROUND-ATTACHMENT:FIXED;
+    BACKGROUND-COLOR:BLACK;
+    BACKGROUND-POSITION:50% 50% ;
+    BACKGROUND-SIZE:600px 550px;
+}
+
+/* ------------------------------------------------MAINTAINING THE MARGIN AND PADDING OF WHOLE NAVE BAR--------------------- */
+
+UL{
+    MARGIN:0PX;
+    PADDING: 2PX;
+    LIST-STYLE: NONE;
+    FLOAT:LEFT;
+    BACKGROUND:NONE;
+}
+
+/* -----------------------------------------TO MAKE THE NAVBAR AT RIGHT-------------------------- */
+
+.NAV{
+    FLOAT:RIGHT;
+    PADDING:34px 38px;
+}
+
+/* ----------------------------------------THIS IS FOR LOGO AT NAV BAR ------------------------- */
+
+.IMG{
+    WIDTH:50px;
+    PADDING-LEFT:8px;
+    PADDING-TOP:8px;
+}
+
+/* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR PARAMETERS)-------------- */
+
+UL LI{
+    FLOAT:LEFT;
+    WIDTH:145PX;
+    HEIGHT:33PX;
+    BACKGROUND:NONE;
+    OPACITY:.8;
+    LINE-HEIGHT:31PX;
+    MARGIN-RIGHT: 3PX
+}
+
+/* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR TEXT DECORATIONS)----------------- */
+
+UL LI A{
+    TEXT-DECORATION: NONE;
+    COLOR:WHITE;
+    DISPLAY: BLOCK;
+    TEXT-ALIGN: CENTER;
+    FONT-SIZE: 15PX;
+}
+
+/* ---------------------------------THIS FOR THE LINE WHICH IS SHOWN BELOW(DESIGN line shown below)-------------------- */
+
+UL LI::AFTER{
+    CONTENT:'';
+    WIDTH:0%;
+    HEIGHT:2px;
+    BACKGROUND:rgba(211,174,109,255);
+    DISPLAY:BLOCK;
+    TRANSITION:1s;
+}
+
+/* ----------------------------------------THIS IS TO SHOW LINE AFTER HOVER---------------------- */
+
+UL LI:HOVER::AFTER{
+    WIDTH:100%;
+}
+
+ /* -------------------------------------AFTER HOVER DESIGN IN NAV BAR (INCLUDING DROPDOWN)------------------------- */
+
+UL LI A:HOVER{
+    BACKGROUND-COLOR:NONE;
+}
+
+/* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
+
+UL.LOG A{
+    TEXT-DECORATION:NONE;
+    DISPLAY:BLOCK;
+    PADDING:3px 13px;
+    COLOR:BLACK;
+    FONT-SIZE:17px;
+    BORDER:1px SOLID BLACK;
+    BORDER-RADIUS:20px;
+    BACKGROUND:LINEAR-GRADIENT(-45deg, #FFE000 ,#e65c00);
+    TRANSITION:0.25s;
+    CURSOR:POINTER;
+}

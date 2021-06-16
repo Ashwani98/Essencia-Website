@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'home_base.css' %}">
+</head>
+<body>
+<NAV>
+    <UL class="img">
+        <A href="#"><IMG SRC= "images/logo.png" WIDTH= "100"></A>
+    </UL>
+    <UL class="nav" >
+        <LI>
+            <A HREF="#" TARGET= "C"><STRONG>DASHBOARD</STRONG></A>
+        </LI>
+        <LI>
+            <A HREF="#" TARGET= "C"><STRONG>SALARIES</STRONG></A>
+        </LI>
+        <LI>
+            <A HREF= "#" TARGET= "C"><STRONG>PROFIT & LOSS</STRONG></A>
+        </LI>
+        <LI>
+            <A href="#"><STRONG>ANALYSIS</STRONG></A>
+        </LI>
+        <LI>
+            <A HREF= "#" TARGET= "C"><STRONG>FILE MANAGEMENT</STRONG></A>
+        </LI>
+        <LI>
+            <A HREF= "#" TARGET= "C"><STRONG>EMPLOYEES</STRONG></A>
+        </LI>
+        <UL>class="log">
+            <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+        </UL>
+    </UL>
+</NAV>
+{% block body_block %}
+
+{% endblock %}
+</body>
+</html>

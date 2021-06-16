@@ -1,0 +1,197 @@
+
+body{
+background: #34495e;
+  background-size: cover;
+  margin:0px;
+  padding:0px;
+  height: 700px ;
+  color: black;
+  opacity:550%;
+
+
+}
+H1{
+  COLOR:WHITE;
+  text-align: center;
+}
+
+
+.box{
+    color:white;
+    width: 300px;
+    padding:40px;
+    position:absolute;
+    top: 60% ;
+    left:50% ;
+        transform:translate(-50% , -50%);
+        background:#191919;
+        opacity: 50%;
+        border-radius: 15px;
+        text-align:center;
+        }
+
+
+.box h1{
+          color: white;
+        }
+
+        a{
+          text-decoration: none ;
+          color: white;
+          padding-left: 22px;
+
+        }
+
+        .box input[type="text"] , .box input[type="password"]{
+          border:0;
+          background:none;
+          display: block;
+          margin:20px auto;
+          text-align: center;
+          border:2px solid #3498db;
+           background:#010101;
+          padding:14px 10px;
+          width:200px;
+          outline:none;
+          color:white;
+          border-radius: 24px;
+          transition:0.30s;
+
+        }
+
+.error{
+    text-align:center;
+    margin-top:570px;
+    color:white;
+}
+
+        .go{
+        font-size:40px;
+        margin-top:0px;
+        font-family:Accidental Presidency;
+        }
+
+        .box input[type="text"]:focus , .box input[type="password"]:focus{
+
+        width:280px;
+        border-color:#2ecc71;
+      }
+
+      .box input[type = "submit"]{
+        border:0;
+        background:none;
+        display: block;
+        margin:20px auto;
+        text-align: center;
+        border:2px solid #2ecc71;
+        padding:14px 40px;
+
+        outline:none;
+        color: white;
+        border-radius: 24px;
+        transition:0.25s;
+        cursor: pointer;
+
+      }
+
+        .box input[type="submit"]:hover{
+          background:#2ecc71;
+        }
+
+         input::placeholder{
+          color:white;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------ */
+        UL
+        {
+         MARGIN:0PX;
+         PADDING: 2PX;
+         LIST-STYLE: NONE;
+         float:left;
+         background:none;
+        }
+        /* -----------------------------------------TO MAKE THE NAVBAR AT RIGHT-------------------------- */
+        .nav
+        {
+         float:right;
+         padding:34px 38px;
+        }
+
+        /* ----------------------------------------THIS IS FOR LOGO AT NAV BAR ------------------------- */
+
+        .img
+        {
+         width:50px;
+         padding-left: 8px;
+         padding-top: 8px;
+        }
+        /* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR PARAMETERS)-------------- */
+        UL LI
+        {
+         FLOAT:left;
+         WIDTH: 145PX;
+         HEIGHT: 33PX;
+         BACKGROUND:none;
+         OPACITY:.8;
+         LINE-HEIGHT:31PX;
+         MARGIN-RIGHT: 3PX
+        }
+
+        /* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR TEXT DECORATIONS)----------------- */
+
+        UL LI A
+        {
+        TEXT-DECORATION: NONE;
+        COLOR:WHITE;
+        DISPLAY: BLOCK;
+        TEXT-ALIGN: CENTER;
+        FONT-SIZE: 14PX;
+        }
+
+
+        /* ---------------------------------THIS FOR THE LINE WHICH IS SHOWN BELOW(DESIGN line shown below)-------------------- */
+
+        ul li::after
+        {
+        content:'';
+        width:0%;
+        height:2px;
+        background:rgba(211,174,109,255);
+        display: block;
+        transition: 1s;
+
+        }
+        /* ----------------------------------------THIS IS TO SHOW LINE AFTER HOVER---------------------- */
+         ul li:hover::after
+         {
+           width:100%;
+        }
+
+        /* -------------------------------------AFTER HOVER DESIGN IN NAV BAR (INCLUDING DROPDOWN)------------------------- */
+        UL LI A:HOVER{
+          BACKGROUND-COLOR:NONE;
+
+        }
+        /* ------------------------------TO HIDE DROPDOWN MENU-------------------- */
+        UL LI UL LI{
+          DISPLAY:NONE;
+        }
+
+        /* ------------------------------------TO SHOW DROPDOWN MENU AFTER HOVER--------------------- */
+        UL LI:HOVER UL LI {
+          DISPLAY: BLOCK;
+        }
+        /* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
+  ul .log a{
+        text-decoration: none;
+         display:block;
+         padding: 3px 13px;
+         color: black;
+         font-size: 17px;
+         border: 1px solid black;
+         border-radius: 20px;
+         background:linear-gradient(-45deg, #FFE000 ,#e65c00);
+         transition: 0.25s;
+         cursor: pointer;
+        }

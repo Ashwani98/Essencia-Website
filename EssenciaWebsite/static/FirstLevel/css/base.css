@@ -79,7 +79,7 @@ ul li::after
  }
 /* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
 ul .log a{
- text-decoration: none;
+  text-decoration: none;
   display:block;
   padding: 3px 13px;
   color: black;

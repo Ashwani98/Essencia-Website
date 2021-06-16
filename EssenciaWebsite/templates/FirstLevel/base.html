@@ -14,13 +14,13 @@
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
         <UL class="nav" >
-            <LI><A HREF="#" TARGET= "C"><strong>HOME</strong></A></LI>
+            <LI><A HREF="{% url 'basic_app:index' %}" TARGET= "C"><strong>HOME</strong></A></LI>
             <LI><A HREF="#" TARGET= "C"><strong>VISION / MISSION</strong></A></LI>
             <LI><A HREF= "#" TARGET= "C"><strong>ABOUT US</strong></A>
                 <UL class="drop">
                     <LI><A HREF= "#" TARGET= "C"><strong>OUR STRENGTH</strong></A></LI>
                     <LI><A HREF= "#" TARGET= "C"><strong>OUR PRINCIPLES</strong></A></LI>
-                    <LI><A HREF= "#" TARGET= "C"><strong>OUR CLIENTS</strong></A></LI>
+                    <LI><A HREF= "{% url 'basic_app:clients' %}" TARGET= "C"><strong>OUR CLIENTS</strong></A></LI>
                 </UL>
             </LI>
             <LI><a href="#"><strong>WHAT WE DO !</strong></a></LI>
@@ -32,7 +32,7 @@
                 </UL>
             </li>
           <UL class="log">
-          <a><strong>LOGIN</strong></a>
+          <A HREF="{% url 'basic_app:user_login' %}"><strong>LOGIN</strong></A>
           </UL>
         </UL>
     </NAV>

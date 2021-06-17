@@ -1,0 +1,140 @@
+h1
+{
+  color: white;
+  font-family: Accidental Presidency;
+  font-size: 45px;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+.first{
+  text-align: center;
+ }
+
+
+ ul.breadcrumb {
+   padding: 0px 21px;
+   list-style: none;
+   background-color:none;
+   text-align: left;
+   margin-top: 0px;
+ }
+ ul.breadcrumb li {
+   display: inline;
+   font-size: 15px;
+ }
+ ul.breadcrumb li+li:before {
+   padding: 8px;
+   color: white;
+   content: "/\00a0";
+ }
+ ul.breadcrumb li a {
+   color: white ;
+   text-decoration: none;
+ }
+ ul.breadcrumb li a:hover {
+   color: #01447e;
+   text-decoration: underline;
+ }
+
+
+.table1{
+  /* background-image: linear-gradient(to right top, #dff11c, #ffb900, #ff773f, #ff2c79, #eb12b2); */
+ /* background-color:rgb(211 ,174 ,109) ; */
+  color: white;
+  border-radius: 116px;
+  margin-right: 0px;
+  width:654px;
+  height:182px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 19px;
+  float: left;
+  animation: slideMe 2s ease-in;
+
+}
+
+@keyframes slideMe {
+    0%{
+      transform: skewX(3deg) translateX(-900px);
+    }
+    100%{
+      transform: skew(0deg);
+    }
+}
+.table1:hover{
+ box-shadow: 0 0 40px 0px rgb(211 ,174 ,109); */
+}
+
+.top{
+  height:232px;
+  width:825px;
+}
+img{
+  height:109px;
+  width:135px;
+  padding-bottom: 50px;
+  padding-top: 41px;
+}
+
+
+.table2{
+  margin-top: 108px;
+/* background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12); */
+ /* background-color:rgb(211 ,174 ,109) ; */
+ color: white;
+ border-radius: 116px;
+ margin-right: 0px;
+ width:654px;
+ height:182px;
+ vertical-align: middle;
+ font-size: 19px;
+ float:right;
+ animation: slideMe2 4s ease-in;
+
+}
+
+
+.first{
+margin-top:100px;
+color:white;
+}
+@keyframes slideMe2 {
+    0%{
+      transform: skewX(3deg) translateX(-1900px);
+    }
+    100%{
+      transform: skew(0deg);
+    }
+}
+
+.table2:hover{
+  box-shadow: 0 0 40px 0px rgb(211 ,174 ,109);
+}
+
+.table3{
+  margin-top: 85px;
+ color: white;
+ border-radius: 116px;
+ width:654px;
+ height:182px;
+  animation: slideMe3 6s ease-in;
+
+ /* vertical-align: middle; */
+ font-size: 19px;
+ float: left;
+ /* padding: 20px; */
+}
+
+@keyframes slideMe3 {
+    0%{
+      transform: skewX(3deg) translateX(-1800px);
+    }
+    100%{
+      transform: skew(0deg);
+    }
+}
+
+.table3:hover{
+  box-shadow: 0 0 40px 0px rgb(211 ,174 ,109);
+}

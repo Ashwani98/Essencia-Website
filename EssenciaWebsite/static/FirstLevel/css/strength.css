@@ -1,0 +1,182 @@
+ol.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color:none;
+  text-align: left;
+}
+ol.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ol.breadcrumb li+li:before {
+  padding: 8px;
+  color: rgba(211,174,109,255);
+  content: "/\00a0";
+}
+ol.breadcrumb li a {
+  color: white;
+  text-decoration: none;
+}
+ol.breadcrumb li a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+
+h1{
+  color:white;
+}
+
+p{
+  color:white;
+  text-align: center;
+  animation: slideMe 1s ease-in;
+
+}
+
+@keyframes slideMe {
+    0%{
+      transform: skewX(3deg) translateX(-900px);
+    }
+    100%{
+      transform: skew(0deg);
+    }
+}
+
+.abhi1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.row1{
+  margin-left:600px;
+
+}
+.mohu1{
+  /* margin-left: 306px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+  }
+
+
+  .row2{
+    margin-right:600px;
+  }
+
+.mohu2{
+  /* margin-right:302px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+
+}
+
+.abhi2{
+  display: flex;
+  justify-content: space-between;
+}
+
+.row3{
+  margin-left:488px;
+
+}
+.mohu3{
+  /* margin-left: 306px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+  }
+
+
+  .row4{
+    margin-right:485px;
+  }
+
+.mohu4{
+  /* margin-right:302px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+
+}
+
+
+.abhi3{
+  display: flex;
+  justify-content: space-between;
+}
+
+.row5{
+  margin-left:379px;
+
+}
+.mohu5{
+  /* margin-left: 306px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+  }
+
+
+  .row6{
+    margin-right:379px;
+  }
+
+.mohu6{
+  /* margin-right:302px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+
+}
+
+
+.abhi4{
+  display: flex;
+  justify-content: space-between;
+}
+
+.row7{
+  margin-left:507px;
+
+}
+.mohu7{
+  /* margin-left: 306px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+  }
+
+
+  .row8{
+    margin-right:481px;
+  }
+
+.mohu8{
+  /* margin-right:302px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+
+}
+
+
+.abhi5{
+  display: flex;
+  justify-content: space-between;
+}
+
+.row9{
+  margin-left:612px;
+
+}
+.mohu9{
+  /* margin-left: 306px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+  }
+
+
+  .row10{
+    margin-right:584px;
+  }
+
+.mohu10{
+  /* margin-right:302px; */
+  animation: slideMe 1s ease-in;
+  WIDTH:100PX;
+
+}

@@ -1,0 +1,58 @@
+{% extends 'FirstLevel/base.html' %}
+{% load static %}
+{% block body_block %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="whatwedo.css">
+    <title>WHAT WE DO</title>
+    <style>
+      @font-face {
+   font-family: Accidental Presidency ;
+   src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+  }
+
+      @font-face {
+      font-family: Arial Narrow;
+      src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+      }
+
+      body{
+        background-color: black;
+        background-image: url(images/image3.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50% 50% ;
+        background-size: 500px 450px;
+}
+    </style>
+  </head>
+  <body>
+
+
+    <h1>WHAT WE DO</h1>
+<hr color= #d3ae6d>
+    <ul class="breadcrumb">
+  <li><a href="{% url 'basic_app:index' %}">Home</a></li>
+  <li><a href="{% url 'basic_app:whatwedo' %}">What We Do</a></li>
+  </ul>
+  <section class="service">
+
+<div class="first">
+<img class="img1" src="{% static 'FirstLevel/images/picture1.png' %}" alt="">
+<img class="img2" src="{% static 'FirstLevel/images/picture2.png' %}" alt="">
+</div>
+
+<div class="second">
+<img class="img3" src="{% static 'FirstLevel/images/picture3.png' %}" alt="">
+</div>
+
+<div class="third">
+<img class="img4" src="{% static 'FirstLevel/images/picture4.png' %}" alt="">
+<img class="img5" src="{% static 'FirstLevel/images/picture5.png' %}" alt="">
+</div>
+  </section>
+  </body>
+</html>
+{% endblock %}

@@ -14,6 +14,18 @@ def index(request):
 def clients(request):
     return render(request, 'FirstLevel/clients.html')
 
+def vision(request):
+    return render(request, 'FirstLevel/vision_mission.html')
+
+def principle(request):
+    return render(request, 'FirstLevel/principle.html')
+
+def strength(request):
+    return render(request, 'FirstLevel/strength.html')
+
+def whatwedo(request):
+    return render(request, 'FirstLevel/whatwedo.html')
+
 # After Login- Logout redirect page
 def user_logout(request):
     logout(request)

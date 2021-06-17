@@ -1,40 +1,10 @@
-h1
-{
-  color: white;
-  font-family: Accidental Presidency;
-  font-size: 45px;
-  text-align: left;
-  margin-bottom: 0px;
-}
+
 
 .first{
   text-align: center;
  }
 
- ul.breadcrumb {
-   padding: 0px 21px;
-   list-style: none;
-   background-color:none;
-   text-align: left;
-   margin-top: 0px;
- }
- ul.breadcrumb li {
-   display: inline;
-   font-size: 15px;
- }
- ul.breadcrumb li+li:before {
-   padding: 8px;
-   color: white;
-   content: "/\00a0";
- }
- ul.breadcrumb li a {
-   color: white ;
-   text-decoration: none;
- }
- ul.breadcrumb li a:hover {
-   color: #01447e;
-   text-decoration: underline;
- }
+
 
 
 .table1{

@@ -6,14 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width , initial- scale 1.0">
     <title>ESSENCCIA OUTSOURCING</title>
-    <link rel="stylesheet" href="{% static 'home_base.css' %}">
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/home_base.css' %}">
 </head>
 <body>
 <NAV>
     <UL class="img">
-        <A href="#"><IMG SRC= "images/logo.png" WIDTH= "100"></A>
+        <A href="#"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></A>
     </UL>
-    <UL class="nav" >
+    <UL class="nav">
         <LI>
             <A HREF="#" TARGET= "C"><STRONG>DASHBOARD</STRONG></A>
         </LI>
@@ -32,7 +32,7 @@
         <LI>
             <A HREF= "#" TARGET= "C"><STRONG>EMPLOYEES</STRONG></A>
         </LI>
-        <UL>class="log">
+        <UL class="log">
             <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
         </UL>
     </UL>

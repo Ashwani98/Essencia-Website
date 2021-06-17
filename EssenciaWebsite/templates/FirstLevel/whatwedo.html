@@ -26,17 +26,55 @@
         background-position: 50% 50% ;
         background-size: 500px 450px;
 }
+
+h1{
+  color: white;
+  text-align: left;
+  font-family: Accidental Presidency;
+  margin-left: 33px;
+  margin-bottom: 0px;
+  font-size:36px;
+}
+
+
+ol.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color:none;
+  text-align: left;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 10px;
+  margin-left: 19px;
+}
+ol.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ol.breadcrumb li+li:before {
+  padding: 8px;
+  color: white;
+  content: "/\00a0";
+}
+ol.breadcrumb li a {
+  color: white;
+  text-decoration: none;
+}
+ol.breadcrumb li a:hover {
+
+  text-decoration: underline;
+}
     </style>
   </head>
   <body>
 
 
-    <h1>WHAT WE DO</h1>
-<hr color= #d3ae6d>
-    <ul class="breadcrumb">
-  <li><a href="{% url 'basic_app:index' %}">Home</a></li>
+    <h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white">WHAT WE DO</h1>
+<hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
+    <ol class="breadcrumb"style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;">
+  <li><a href="{% url 'basic_app:index' %}"style="padding-left:75px;" >Home</a></li>
   <li><a href="{% url 'basic_app:whatwedo' %}">What We Do</a></li>
-  </ul>
+  </ol>
   <section class="service">
 
 <div class="first">

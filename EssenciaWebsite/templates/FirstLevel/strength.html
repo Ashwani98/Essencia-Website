@@ -21,13 +21,20 @@
 body{
   background-color: black;
 }
+
+h1{
+  color:white;
+  font-family:Accidental Presidency;
+  font-size:36px;
+}
       </style>
   </head>
   <body>
-    <h1>OUR STRENGTH</h1>
-    <hr>
-    <OL class="breadcrumb">
-        <LI><A href="{% url 'basic_app:index' %}">Home</A></LI>
+    <h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white" >OUR STRENGTH</h1>
+    <hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
+
+    <OL class="breadcrumb"style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;" >
+        <LI><A href="{% url 'basic_app:index' %}" style="padding-left:95px;">Home</A></LI>
         <LI><A href="{% url 'basic_app:strength' %}">Our Strength</A></LI>
     </OL>
  <div class="abhi1">

@@ -26,19 +26,49 @@
     background-color: black;
 }
 
+h1
+{
+  color: white;
+  font-family: Accidental Presidency;
+  font-size: 36px;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+ol.breadcrumb {
+   padding: 10px 16px;
+   list-style: none;
+   background-color:none;
+   text-align: left;
+ }
+ ol.breadcrumb li {
+   display: inline;
+   font-size: 18px;
+ }
+ ol.breadcrumb li+li:before {
+   padding: 8px;
+   color: rgba(211,174,109,255);
+   content: "/\00a0";
+ }
+ ol.breadcrumb li a {
+   color: white ;
+   text-decoration: none;
+ }
+ ol.breadcrumb li a:hover {
+   color: white;
+   text-decoration: underline;
+ }
+
     </style>
   </head>
   <body>
-
-<section class="first">
-    <FONT FACE= "CAMBRIA" SIZE= "5">
-<h1>OUR PRINCIPLES</h1>
-<hr color= #d3ae6d>
-  <ul class="breadcrumb">
-<li><a href="{% url 'basic_app:index' %}">Home</a></li>
+<h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white">OUR PRINCIPLES</h1>
+<hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
+  <ol class="breadcrumb" style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;">
+<li><a href="{% url 'basic_app:index' %}"style="padding-left:95px;">Home</a></li>
 <li><a href="{% url 'basic_app:principle' %}">Our Principles</a></li>
-</ul>
-</section>
+</ol>
+
 
 <div class="table1">
   <table>

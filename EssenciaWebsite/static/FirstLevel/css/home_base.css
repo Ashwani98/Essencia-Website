@@ -7,6 +7,19 @@ BODY{
 
     }
 
+UL LI::after{
+            content:'';
+            width:0%;
+            height:2px;
+            background:rgba(211 ,174 , 109 ,255);
+            display:block;
+            transition:1s;
+            }
+
+UL LI:hover::after{
+    width:100%;
+    }
+
 /* ------------------------------------------------MAINTAINING THE MARGIN AND PADDING OF WHOLE NAVE BAR--------------------- */
 UL{
   MARGIN:0PX;
@@ -28,50 +41,9 @@ UL{
   PADDING-LEFT:8px;
   PADDING-TOP:8px;
     }
-/* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR PARAMETERS)-------------- */
-UL LI
-{
-  FLOAT:LEFT;
-  WIDTH:145PX;
-  HEIGHT:33PX;
-  BACKGROUND:NONE;
-  OPACITY:.8;
-  LINE-HEIGHT:31PX;
-  MARGIN-RIGHT: 3PX
-    }
 
-/* --------------------------THIS IS FOR ALL THE WRITTEN PART IN NAVBAR INCLUDING DROPDOWN (FOR TEXT DECORATIONS)----------------- */
-
-UL LI A{
- TEXT-DECORATION: NONE;
- COLOR:WHITE;
- DISPLAY: BLOCK;
- TEXT-ALIGN: CENTER;
- FONT-SIZE: 15PX;
-    }
-
-
-/* ---------------------------------THIS FOR THE LINE WHICH IS SHOWN BELOW(DESIGN line shown below)-------------------- */
-
-UL LI::AFTER{
- CONTENT:'';
- WIDTH:0%;
- HEIGHT:2px;
- BACKGROUND:rgba(211,174,109,255);
- DISPLAY:BLOCK;
- TRANSITION:1s;
-    }
-/* ----------------------------------------THIS IS TO SHOW LINE AFTER HOVER---------------------- */
-UL LI:HOVER::AFTER{
-  WIDTH:100%;
-    }
-
- /* -------------------------------------AFTER HOVER DESIGN IN NAV BAR (INCLUDING DROPDOWN)------------------------- */
-UL LI A:HOVER{
-  BACKGROUND-COLOR:NONE;
-    }
 /* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
-UL.LOG A{
+ul.block A{
  TEXT-DECORATION:NONE;
  DISPLAY:BLOCK;
  PADDING:3px 13px;

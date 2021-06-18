@@ -8,12 +8,12 @@
     <title>ESSENCCIA OUTSOURCING</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/base.css' %}">
 
-<body>
-    <NAV>
+<body style="padding-top:8px;">
+    <NAV style="width:1424px; height:0px;">
         <UL class="img">
-            <A href="{% url 'basic_app:index' %}"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+            <A href="{% url 'basic_app:index' %}" style="padding-left:0px;"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
-        <UL class="nav" style="margin-bottom:50px;">
+        <UL class="nav"style="padding-bottom:50px;">
             <LI><A HREF="{% url 'basic_app:index' %}" TARGET= "C" style="padding-left:0px"><strong>HOME</strong></A></LI>
             <LI><A HREF="{% url 'basic_app:vision' %}" TARGET= "C" style="padding-left:0px"><strong>VISION / MISSION</strong></A></LI>
             <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>ABOUT US</strong></A>

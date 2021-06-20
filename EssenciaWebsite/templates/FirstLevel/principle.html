@@ -3,114 +3,113 @@
 {% block body_block %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'FirstLevel/principles.css' %}">
     <title></title>
     <style>
-      @font-face {
-   font-family: Accidental Presidency ;
-   src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
-  }
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
 
-      @font-face {
-      font-family: Arial Narrow;
-      src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
-      }
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
 
-      body{
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: 50% 50% ;
-    background-size: 500px 550px;
-    background-color: black;
-}
+        body{
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 50% 50% ;
+            background-size: 500px 550px;
+            background-color: black;
+            }
 
-h1
-{
-  color: white;
-  font-family: Accidental Presidency;
-  font-size: 36px;
-  text-align: left;
-  margin-bottom: 0px;
-}
+        h1{
+            color: white;
+            font-family: Accidental Presidency;
+            font-size: 36px;
+            text-align: left;
+            margin-bottom: 0px;
+            }
 
-ol.breadcrumb {
-   padding: 10px 16px;
-   list-style: none;
-   background-color:none;
-   text-align: left;
- }
- ol.breadcrumb li {
-   display: inline;
-   font-size: 18px;
- }
- ol.breadcrumb li+li:before {
-   padding: 8px;
-   color: rgba(211,174,109,255);
-   content: "/\00a0";
- }
- ol.breadcrumb li a {
-   color: white ;
-   text-decoration: none;
- }
- ol.breadcrumb li a:hover {
-   color: white;
-   text-decoration: underline;
- }
+        ol.breadcrumb{
+            padding: 10px 16px;
+            list-style: none;
+            background-color:none;
+            text-align: left;
+            }
 
+        ol.breadcrumb li{
+            display: inline;
+            font-size: 18px;
+            }
+
+        ol.breadcrumb li+li:before{
+            padding: 8px;
+            color: rgba(211,174,109,255);
+            content: "/\00a0";
+            }
+
+        ol.breadcrumb li a{
+            color: white ;
+            text-decoration: none;
+            }
+
+        ol.breadcrumb li a:hover {
+            color: white;
+            text-decoration: underline;
+            }
     </style>
-  </head>
-  <body>
-<h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white">OUR PRINCIPLES</h1>
-<hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
+</head>
+<body>
+  <h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white">OUR PRINCIPLES</h1>
+  <hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
   <ol class="breadcrumb" style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;">
-<li><a href="{% url 'basic_app:index' %}"style="padding-left:95px;">Home</a></li>
-<li><a href="{% url 'basic_app:principle' %}">Our Principles</a></li>
-</ol>
+    <li><a href="{% url 'basic_app:index' %}" style="padding-left:95px;">Home</a></li>
+    <li><a href="{% url 'basic_app:principle' %}">Our Principles</a></li>
+  </ol>
 
-
-<div class="table1">
-  <table>
-    <tr>
+  <div class="table1">
+    <table>
+      <tr>
         <th><img src="{% static 'FirstLevel/images/principles1.png' %}"></th>
         <th><HR COLOR= "grey" WIDTH= "100%" SIZE= "150 PIXEL"></th>
         <th style="padding-bottom: 33px; padding-left:37px;">Ethical working and transparency in dealing</th>
-    </tr>
-  </table>
-</div>
-<br>
-<div class="table2">
-  <table>
-    <tr>
-      <th><img src="{% static 'FirstLevel/images/principles2.png' %}"></th>
-      <th><HR COLOR= "GREY" WIDTH= "100%" SIZE= "150 PIXEL"></th>
-      <th style="padding-bottom: 33px;  padding-left:37px; ">Dedication and delivery orientation</th>
-    </tr>
-  </table>
-</div>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div class="table2">
+    <table>
+      <tr>
+        <th><img src="{% static 'FirstLevel/images/principles2.png' %}"></th>
+        <th><HR COLOR= "GREY" WIDTH= "100%" SIZE= "150 PIXEL"></th>
+        <th style="padding-bottom: 33px;  padding-left:37px; ">Dedication and delivery orientation</th>
+      </tr>
+    </table>
+  </div>
 
-<div class="table3">
-  <table>
-    <tr>
-      <th><img src="{% static 'FirstLevel/images/principles3.png' %}" style="margin-right: 10px;"></th>
-      <th><HR COLOR= "GREY" WIDTH= "50%" SIZE= "150 PIXEL"></th>
-      <th style="padding-bottom: 33px;  padding-left:37px; ">Service before self interest</th>
-    </tr>
-  </table>
-</div>
+  <div class="table3">
+    <table>
+      <tr>
+        <th><img src="{% static 'FirstLevel/images/principles3.png' %}" style="margin-right: 10px;"></th>
+        <th><HR COLOR= "GREY" WIDTH= "50%" SIZE= "150 PIXEL"></th>
+        <th style="padding-bottom: 33px;  padding-left:37px; ">Service before self interest</th>
+      </tr>
+    </table>
+  </div>
 
-
-<div class="table4">
-  <table>
-    <tr>
-      <th><img src="{% static 'FirstLevel/images/principles4.png' %}" style="margin-left: 0px;margin-right: 28px;padding-left: 16px;"></th>
-      <th><HR COLOR= "GREY" WIDTH= "50%" SIZE= "150 PIXEL"></th>
-      <th style="padding-bottom: 33px; padding-left:37px; ">Building extensive and exhaustive brand partnerships</th>
-    </tr>
-  </table>
-</div>
-
-  </body>
+  <div class="table4">
+    <table>
+      <tr>
+        <th><img src="{% static 'FirstLevel/images/principles4.png' %}" style="margin-left: 0px;margin-right: 28px;padding-left: 16px;"></th>
+        <th><HR COLOR= "GREY" WIDTH= "50%" SIZE= "150 PIXEL"></th>
+        <th style="padding-bottom: 33px; padding-left:37px; ">Building extensive and exhaustive brand partnerships</th>
+      </tr>
+    </table>
+  </div>
+</body>
 </html>
 {% endblock %}

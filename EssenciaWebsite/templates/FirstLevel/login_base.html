@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -7,33 +6,53 @@
     <meta name="viewport" content="width=device-width, initial- scale 1.0">
     <title>ESSENCCIA OUTSOURCING</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/base.css' %}">
-
+</head>
 <body style="padding-top:8px;">
     <NAV style="width:1424px; height:0px;">
         <UL class="img">
-            <A href="{% url 'basic_app:index' %}" style="padding-left:0px;"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+            <A href="{% url 'basic_app:index' %}" style="padding-left:0px;"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></A>
         </UL>
-        <UL class="nav"style="padding-bottom:50px;">
-            <LI><A HREF="{% url 'basic_app:index' %}" TARGET= "C" style="padding-left:0px"><strong>HOME</strong></A></LI>
-            <LI><A HREF="{% url 'basic_app:vision' %}" TARGET= "C" style="padding-left:0px"><strong>VISION / MISSION</strong></A></LI>
-            <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>ABOUT US</strong></A>
+        <UL class="nav" style="padding-bottom:50px;">
+            <LI>
+                <A HREF="{% url 'basic_app:index' %}" style="padding-left:0px"><strong>HOME</strong></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:vision' %}" style="padding-left:0px"><strong>VISION / MISSION</strong></A>
+            </LI>
+            <LI>
+                <A HREF= "#" style="padding-left:0px"><strong>ABOUT US</strong></A>
                 <UL class="drop">
-                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>OUR STRENGTH</strong></A></LI>
-                    <LI><A HREF= "{% url 'basic_app:principle' %}" TARGET= "C" style="padding-left:0px"><strong>OUR PRINCIPLES</strong></A></LI>
-                    <LI><A HREF= "{% url 'basic_app:clients' %}" TARGET= "C" style="padding-left:0px"><strong>OUR CLIENTS</strong></A></LI>
+                    <LI>
+                        <A HREF= "#" style="padding-left:0px"><strong>OUR STRENGTH</strong></A>
+                    </LI>
+                    <LI>
+                        <A HREF= "{% url 'basic_app:principle' %}" style="padding-left:0px"><strong>OUR PRINCIPLES</strong></A>
+                    </LI>
+                    <LI>
+                        <A HREF= "{% url 'basic_app:clients' %}" style="padding-left:0px"><strong>OUR CLIENTS</strong></A>
+                    </LI>
                 </UL>
             </LI>
-            <LI><a href="{% url 'basic_app:whatwedo' %}" style="padding-left:0px"><strong>WHAT WE DO !</strong></a></LI>
-            <LI ><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>CONTACT US</strong></a>
+            <LI>
+                <a href="{% url 'basic_app:whatwedo' %}" style="padding-left:0px"><strong>WHAT WE DO !</strong></a>
+            </LI>
+            <LI >
+                <A HREF= "#" style="padding-left:0px"><strong>CONTACT US</strong></a>
                 <UL class="drop">
-                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>DIRECTORS</strong></A></LI>
-                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>WANT TO JOIN</strong></A></LI>
-                    <LI><A HREF= "#" TARGET= "C" style="padding-left:0px"><strong>PARTNER WITH US</strong></A></LI>
+                    <LI>
+                        <A HREF= "#" style="padding-left:0px"><strong>DIRECTORS</strong></A>
+                    </LI>
+                    <LI>
+                        <A HREF= "#" style="padding-left:0px"><strong>WANT TO JOIN</strong></A>
+                    </LI>
+                    <LI>
+                        <A HREF= "#" style="padding-left:0px"><strong>PARTNER WITH US</strong></A>
+                    </LI>
                 </UL>
-            </li>
-          <UL class="log">
-          <A HREF="{% url 'basic_app:user_login' %}"><strong>LOGIN</strong></A>
-          </UL>
+            </LI>
+            <UL class="log">
+                <A HREF="{% url 'basic_app:user_login' %}"><strong>LOGIN</strong></A>
+            </UL>
         </UL>
     </NAV>
       {% block body_block %}

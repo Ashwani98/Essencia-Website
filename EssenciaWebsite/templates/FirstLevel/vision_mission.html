@@ -8,105 +8,103 @@
   <link rel="stylesheet" href="{% static 'FirstLevel/vision_mission.css' %}">
   <title>VISION & MISSION</title>
   <style>
-    @font-face {
-      font-family: Accidental Presidency ;
-      src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
-    }
+      @font-face {
+          font-family: Accidental Presidency ;
+          src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+          }
 
-    @font-face {
-      font-family: Arial Narrow;
-      src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
-    }
+      @font-face {
+          font-family: Arial Narrow;
+          src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+          }
 
-    body{
-      background-image: url({% static 'FirstLevel/images/back1.png' %});
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: 50% 90% ;
-      padding-top: 0px;
-      background-size: 550px 550px;
-      background-color: black;
-    }
+      body{
+          background-image: url({% static 'FirstLevel/images/back1.png' %});
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: 50% 90% ;
+          padding-top: 0px;
+          background-size: 550px 550px;
+          background-color: black;
+          }
 
-    h1{
-      color: white;
-      font-family: Accidental Presidency;
-      font-size: 36px;
-      margin-bottom: 0px;
-      }
+      h1{
+          color: white;
+          font-family: Accidental Presidency;
+          font-size: 36px;
+          margin-bottom: 0px;
+          }
 
-    ol.oll li+li:before{
-      padding: 8px;
-      color: rgb(211,174,109);
-      content: "/\00a0";
-    }
+      ol.oll li+li:before{
+          padding: 8px;
+          color: rgb(211,174,109);
+          content: "/\00a0";
+          }
 
-    ol.oll {
-      padding: 10px 16px;
-      list-style: none;
-      background-color:none;
-      text-align: left;
-      display:-webkit-box;
-    }
+      ol.oll {
+          padding: 10px 16px;
+          list-style: none;
+          background-color:none;
+          text-align: left;
+          display:-webkit-box;
+          }
 
-    ol.oll li {
-      font-size: 18px;
-    }
+      ol.oll li {
+          font-size: 18px;
+          }
 
-    ol.oll li a {
-      color: white ;
-      text-decoration: none;
-    }
+      ol.oll li a{
+          color: white ;
+          text-decoration: none;
+          }
 
-  }
-
-    ol.oll li a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-
+      ol.oll li a:hover{
+          color: white;
+          text-decoration: underline;
+          }
   </style>
 </head>
 <body>
-<!--<section class="first"  style="margin-top:0px; margin-bottom:0px; color:white;">-->
-<h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white">VISION, MISSION & VALUES</h1>
-<hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
-<ol class="oll" style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;">
-    <li><a href="{% url 'basic_app:index' %}" style="padding-left:95px;">Home</a></li>
-    <li><a href="{% url 'basic_app:vision' %}">Vision & Mission</a></li>
-</ol>
+  <h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white">VISION, MISSION & VALUES</h1>
+  <hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
+  <ol class="oll" style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;">
+      <li>
+        <a href="{% url 'basic_app:index' %}" style="padding-left:95px; margin-right:5px;">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'basic_app:vision' %}">Vision & Mission</a>
+      </li>
+  </ol>
 
-<div class="table1">
-  <table>
-    <tr>
-        <th><img src="{% static 'FirstLevel/images/vissionlogo1.png' %}"></th>
+  <div class="table1">
+    <table>
+      <tr>
+          <th><img src="{% static 'FirstLevel/images/vissionlogo1.png' %}"></th>
+          <th><HR COLOR= "GREY" WIDTH= "100%" SIZE= "150 PIXEL"></th>
+          <th style="padding-bottom: 33px;">To be India’s leading cred-coll agency with complete focus on delivering performance for our brand partners while ensuring work transparency with complete data privacy & safety.</th>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div class="table2">
+    <table>
+      <tr>
+        <th><img src="{% static 'FirstLevel/images/missionlogo1.png' %}"></th>
         <th><HR COLOR= "GREY" WIDTH= "100%" SIZE= "150 PIXEL"></th>
-        <th style="padding-bottom: 33px;">To be India’s leading cred-coll agency with complete focus on delivering performance for our brand partners while ensuring work transparency with complete data privacy & safety.</th>
-    </tr>
-  </table>
-</div>
-<br>
-<div class="table2">
-  <table>
-    <tr>
-      <th><img src="{% static 'FirstLevel/images/missionlogo1.png' %}"></th>
-      <th><HR COLOR= "GREY" WIDTH= "100%" SIZE= "150 PIXEL"></th>
-      <th style="padding-bottom: 33px;">Clear focus to deliver ON TIME IN FULL (OTIF) targets assigned by our brand partners with pace, people, processes and performance orientation.</th>
-    </tr>
-  </table>
-</div>
+        <th style="padding-bottom: 33px;">Clear focus to deliver ON TIME IN FULL (OTIF) targets assigned by our brand partners with pace, people, processes and performance orientation.</th>
+      </tr>
+    </table>
+  </div>
 
-<div class="table3">
-  <table>
-    <tr>
-      <th><img src="{% static 'FirstLevel/images/valueslogo1.png' %}"></th>
-      <th><HR COLOR= "GREY" WIDTH= "50%" SIZE= "150 PIXEL"></th>
-      <th style="padding-bottom: 33px;">Clear focus to deliver ON TIME IN FULL (OTIF) targets assigned by our brand partners with pace, people, processes and performance orientation.</th>
-    </tr>
-  </table>
-</div>
-<!--</section>-->
+  <div class="table3">
+    <table>
+      <tr>
+        <th><img src="{% static 'FirstLevel/images/valueslogo1.png' %}"></th>
+        <th><HR COLOR= "GREY" WIDTH= "50%" SIZE= "150 PIXEL"></th>
+        <th style="padding-bottom: 33px;">Clear focus to deliver ON TIME IN FULL (OTIF) targets assigned by our brand partners with pace, people, processes and performance orientation.</th>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>
 {% endblock %}

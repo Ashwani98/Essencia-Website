@@ -25,38 +25,37 @@
             TEXT-ALIGN: CENTER;
             FONT-SIZE: 15PX;
             }
-
     </style>
 </head>
 <body>
-<NAV style="margin-top:0px;width:1400px;height:100px;margin-bottom:0px;">
-    <UL class="img1">
-        <A href="#"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></A>
-    </UL>
-    <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
-        <LI>
-            <A HREF="#" TARGET= "C"><STRONG>DASHBOARD</STRONG></A>
-        </LI>
-        <LI>
-            <A HREF="#" TARGET= "C"><STRONG>SALARIES</STRONG></A>
-        </LI>
-        <LI>
-            <A HREF= "#" TARGET= "C"><STRONG>PROFIT & LOSS</STRONG></A>
-        </LI>
-        <LI>
-            <A href="#"><STRONG>ANALYSIS</STRONG></A>
-        </LI>
-        <LI>
-            <A HREF= "#" TARGET= "C"><STRONG>FILE MANAGEMENT</STRONG></A>
-        </LI>
-        <LI>
-            <A HREF= "#" TARGET= "C"><STRONG>EMPLOYEES</STRONG></A>
-        </LI>
-        <ul class="block">
-            <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
-        </ul>
-    </UL>
-</NAV>
+    <NAV style="margin-top:0px;width:1400px;height:100px;margin-bottom:0px;">
+        <UL class="img1">
+            <A href="#"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></A>
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="#"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "#"><STRONG>PROFIT & LOSS</STRONG></A>
+            </LI>
+            <LI>
+                <A href="#"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "#"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "#"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
 {% block body_block %}
 
 {% endblock %}

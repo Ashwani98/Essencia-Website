@@ -10,36 +10,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/login.css' %}">
-<style>
-@font-face {
-   font-family: Accidental Presidency ;
-   src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
-}
+    <style>
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
 
-@font-face {
-   font-family: Arial Narrow;
-   src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
-}
-</style>
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
+    </style>
 </head>
 <body>
-<DIV style="margin-left:570px; margin-right:530px; width:300px;">
-    <H1 class='go' style="margin-top:0px">COMPANY LOGIN</H1>
-    <FORM class="box" action="{% url 'basic_app:user_login' %}" method="POST">
-        {% csrf_token %}
+    <DIV style="margin-left:570px; margin-right:530px; width:300px;">
+        <H1 class='go' style="margin-top:0px">COMPANY LOGIN</H1>
+        <FORM class="box" action="{% url 'basic_app:user_login' %}" method="POST">
+            {% csrf_token %}
 
-        {{login_form.as_p}}
-        <TABLE style="margin-right: 0px; margin-left: 28px;">
-            <TH><STRONG><INPUT type="submit" name="" value="LOGIN"></STRONG></TH>
-            <TH></TH>
-            <TH><A href="{% url 'basic_app:register' %}">New User?</A></TH>
-        </TABLE>
-    </FORM>
-</DIV>
-<DIV class="error">
-{{Error}}
-{{re}}
-</DIV>
+            {{login_form.as_p}}
+            <TABLE style="margin-right: 0px; margin-left: 28px;">
+                <TH>
+                    <STRONG><INPUT type="submit" name="" value="LOGIN"></STRONG>
+                </TH>
+                <TH></TH>
+                <TH>
+                    <A href="{% url 'basic_app:register' %}">New User?</A>
+                </TH>
+            </TABLE>
+        </FORM>
+    </DIV>
+    <DIV class="error">
+        {{Error}}
+        {{re}}
+    </DIV>
 </body>
 </html>
 {% endblock %}

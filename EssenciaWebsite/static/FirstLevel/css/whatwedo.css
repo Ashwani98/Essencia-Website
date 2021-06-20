@@ -1,42 +1,40 @@
 .service{
-  margin-left: 45px;
-  margin-right: 45px;
+    margin-left: 45px;
+    margin-right: 45px;
 }
 
 img{
-  width:215px;
+    width:215px;
 }
+
 .img1{
     padding-left: 61px;
-
 }
- .img2{
-   float:right;
-   margin-right:70px;
-   padding:30px;
 
- }
+.img2{
+    float:right;
+    margin-right:70px;
+    padding:30px;
+}
+
 .img3{
-  margin-top: -3%;
-  margin-left: 41%;
-  margin-right: 34%;
-  width:262px;
-  height:146px;
+    margin-top: -3%;
+    margin-left: 41%;
+    margin-right: 34%;
+    width:262px;
+    height:146px;
 }
 
 .img4{
-  float:right;
-  padding-top: 23px;
-  padding-left: 57px;
-  padding-right:110px;
-  width:165px;
-
-
+    float:right;
+    padding-top: 23px;
+    padding-left: 57px;
+    padding-right:110px;
+    width:165px;
 }
+
 .img5{
-
-  padding-top: 120px;
-  padding-left: 63px;
-  width:565px;
-
+    padding-top: 120px;
+    padding-left: 63px;
+    width:565px;
 }

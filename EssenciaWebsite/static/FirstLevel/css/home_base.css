@@ -1,57 +1,60 @@
 BODY{
-  BACKGROUND-REPEAT:NO-REPEAT;
-  BACKGROUND-ATTACHMENT:FIXED;
-  BACKGROUND-COLOR:BLACK;
-  BACKGROUND-POSITION:50% 50% ;
-  BACKGROUND-SIZE:600px 550px;
-
-    }
+    BACKGROUND-REPEAT:NO-REPEAT;
+    BACKGROUND-ATTACHMENT:FIXED;
+    BACKGROUND-COLOR:BLACK;
+    BACKGROUND-POSITION:50% 50% ;
+    BACKGROUND-SIZE:600px 550px;
+}
 
 UL LI::after{
-            content:'';
-            width:0%;
-            height:2px;
-            background:rgba(211 ,174 , 109 ,255);
-            display:block;
-            transition:1s;
-            }
+    content:'';
+    width:0%;
+    height:2px;
+    background:rgba(211 ,174 , 109 ,255);
+    display:block;
+    transition:1s;
+}
 
 UL LI:hover::after{
     width:100%;
-    }
+}
 
 /* ------------------------------------------------MAINTAINING THE MARGIN AND PADDING OF WHOLE NAVE BAR--------------------- */
+
 UL{
-  MARGIN:0PX;
-  PADDING: 2PX;
-  LIST-STYLE: NONE;
-  FLOAT:LEFT;
-  BACKGROUND:NONE;
-    }
+    MARGIN:0PX;
+    PADDING: 2PX;
+    LIST-STYLE: NONE;
+    FLOAT:LEFT;
+    BACKGROUND:NONE;
+}
+
 /* -----------------------------------------TO MAKE THE NAVBAR AT RIGHT-------------------------- */
+
 .NAV{
-  FLOAT:RIGHT;
-  PADDING:34px 38px;
-    }
+    FLOAT:RIGHT;
+    PADDING:34px 38px;
+}
 
 /* ----------------------------------------THIS IS FOR LOGO AT NAV BAR ------------------------- */
 
 .IMG{
-  WIDTH:50px;
-  PADDING-LEFT:8px;
-  PADDING-TOP:8px;
-    }
+    WIDTH:50px;
+    PADDING-LEFT:8px;
+    PADDING-TOP:8px;
+}
 
 /* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
+
 ul.block A{
- TEXT-DECORATION:NONE;
- DISPLAY:BLOCK;
- PADDING:3px 13px;
- COLOR:BLACK;
- FONT-SIZE:17px;
- BORDER:1px SOLID BLACK;
- BORDER-RADIUS:20px;
- BACKGROUND:LINEAR-GRADIENT(-45deg, #FFE000 ,#e65c00);
- TRANSITION:0.25s;
- CURSOR:POINTER;
+    TEXT-DECORATION:NONE;
+    DISPLAY:BLOCK;
+    PADDING:3px 13px;
+    COLOR:BLACK;
+    FONT-SIZE:17px;
+    BORDER:1px SOLID BLACK;
+    BORDER-RADIUS:20px;
+    BACKGROUND:LINEAR-GRADIENT(-45deg, #FFE000 ,#e65c00);
+    TRANSITION:0.25s;
+    CURSOR:POINTER;
 }

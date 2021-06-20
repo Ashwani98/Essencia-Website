@@ -8,42 +8,46 @@
     <meta name="viewport" content="width=device-width , initial- scale 1.0">
     <title></title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/clients.css' %}">
-<style>
-@font-face {
-   font-family: Accidental Presidency ;
-   src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
-}
+    <style>
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
 
-@font-face {
-   font-family: Arial Narrow;
-   src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
-}
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
 
-body{
-    background-color: black;
-    background-image: url("{% static 'FirstLevel/images/4ps.png' %}");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: 50% 50% ;
-    background-size: 500px 450px;
-}
+        body{
+            background-color: black;
+            background-image: url("{% static 'FirstLevel/images/4ps.png' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 50% 50% ;
+            background-size: 500px 450px;
+            }
 
-h1{
-    font-size: 36px;
-    font-weight: 600;
-    font-family: Accidental Presidency;
-    color: white;
-    text-align: left;
-}
-</style>
+        h1{
+            font-size: 36px;
+            font-weight: 600;
+            font-family: Accidental Presidency;
+            color: white;
+            text-align: left;
+            }
+    </style>
 </head>
 <body>
 <SECTION class="course">
     <H1 style="margin-bottom:0px; margin-top:0px">OUR CLIENTS</H1>
     <HR color= #d3ae6d>
     <OL class="breadcrumb" style="margin-top:0px;margin-bottom:0px;padding-left:0px;padding-top:0px;">
-        <LI><A href="{% url 'basic_app:index' %}">Home</A></LI>
-        <LI><A href="{% url 'basic_app:clients' %}">Our Clients</A></LI>
+        <LI>
+            <A href="{% url 'basic_app:index' %}">Home</A>
+        </LI>
+        <LI>
+            <A href="{% url 'basic_app:clients' %}">Our Clients</A>
+        </LI>
     </OL>
 
     <DIV class="row">
@@ -54,7 +58,8 @@ h1{
                 <P>IDFC Bank is a universal bank , offering financial solutions through its nationwide branches ,
                     internet and mobile. IDFC Bank offers basic services like savings account , NRI Accounts ,
                     Fixed Deposits , Home Loan , Personal loan among others , using technology and a
-                    service - oriented approach , to make banking simple and accessible , anytime and from anywhere. </P>
+                    service - oriented approach , to make banking simple and accessible , anytime and from anywhere.
+                </P>
         </DIV>
 
         <DIV class="course-col">
@@ -62,7 +67,8 @@ h1{
             <HR color=#d3ae6d width=30%>
             <IMG class="idfc" src="{% static 'FirstLevel/images/bajaj.jpg' %}" alt="">
                 <P> Bajaj Finserv, is an Indian non-banking financial company (NBFC). The company deals in consumer
-                    finance, SME (small and medium-sized enterprises) and commercial lending, and wealth management.</P>
+                    finance, SME (small and medium-sized enterprises) and commercial lending, and wealth management.
+                </P>
         </DIV>
 
         <DIV class="course-col">
@@ -71,7 +77,8 @@ h1{
             <IMG class="idfc" src="{% static 'FirstLevel/images/l&t logo.png' %}" alt="">
                 <P> L&T Finance Holdings Ltd. is a NSE and BSE listed company and is also registered with RBI as an
                     NBFC and CIC. It conducts its financial services businesses through various subsidiaries.
-                    L&T Financial Services is the brand name of L&T Finance Holdings Ltd.</P>
+                    L&T Financial Services is the brand name of L&T Finance Holdings Ltd.
+                </P>
         </DIV>
     </DIV>
 
@@ -83,7 +90,8 @@ h1{
                 <P>Kotak Mahindra Bank Limited is an Indian private sector bank headquartered in Mumbai,
                     Maharashtra, India. It offers banking products and financial services for corporate and
                     retail customers in the areas of personal finance, investment banking, life insurance,
-                    and wealth management.</P>
+                    and wealth management.
+                </P>
         </DIV>
 
         <DIV class="course-col">
@@ -93,7 +101,8 @@ h1{
                 <P>Fullerton India Credit Co. Ltd. is a non - banking financial company in India.
                     It is headquartered at Mumbai, India and deals with financing across retail and rural segments.
                     The company provides unsecured as well as secured lending products through a diverse branch network
-                    as well as via digital channels to individuals and MSMEs</P>
+                    as well as via digital channels to individuals and MSMEs
+                </P>
         </DIV>
     </DIV>
 </SECTION>

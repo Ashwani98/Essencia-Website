@@ -3,107 +3,104 @@
 {% block body_block %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/strength.css' %}">
-      <style>
-          @font-face {
-   font-family: Accidental Presidency ;
-   src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
-}
+    <style>
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
 
-@font-face {
-   font-family: Arial Narrow;
-   src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
-}
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
 
-body{
-  background-color: black;
-}
+        body{
+            background-color: black;
+            }
 
-h1{
-  color:white;
-  font-family:Accidental Presidency;
-  font-size:36px;
-}
-      </style>
-  </head>
-  <body>
+        h1{
+            color:white;
+            font-family:Accidental Presidency;
+            font-size:36px;
+            }
+    </style>
+</head>
+<body>
     <h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white" >OUR STRENGTH</h1>
     <hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
-
-    <OL class="breadcrumb"style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;" >
-        <LI><A href="{% url 'basic_app:index' %}" style="padding-left:95px;">Home</A></LI>
-        <LI><A href="{% url 'basic_app:strength' %}">Our Strength</A></LI>
+    <OL class="breadcrumb" style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;" >
+        <LI>
+            <A href="{% url 'basic_app:index' %}" style="padding-left:95px;">Home</A>
+        </LI>
+        <LI>
+            <A href="{% url 'basic_app:strength' %}">Our Strength</A>
+        </LI>
     </OL>
- <div class="abhi1">
-         <div class="row1">
-           <img class="mohu1" src="{% static 'FirstLevel/images/strength1.jpeg' %}" alt="">
-           <p>strength1 </p>
-         </div>
+    <div class="abhi1">
+        <div class="row1">
+            <img class="mohu1" src="{% static 'FirstLevel/images/strength1.jpeg' %}" alt="">
+            <p>strength1</p>
+        </div>
 
-         <div class="row2">
-           <img class="mohu2" src="{% static 'FirstLevel/images/strength2.png' %}" alt="">
-           <p>strength2</p>
-         </div>
+        <div class="row2">
+            <img class="mohu2" src="{% static 'FirstLevel/images/strength2.png' %}" alt="">
+            <p>strength2</p>
+        </div>
+    </div>
 
- </div>
+    <div class="abhi2">
+        <div class="row3">
+            <img class="mohu3" src="{% static 'FirstLevel/images/strength3.png' %}" alt="">
+            <p>strength1 </p>
+        </div>
 
- <div class="abhi2">
-         <div class="row3">
-           <img class="mohu3" src="{% static 'FirstLevel/images/strength3.png' %}" alt="">
-           <p>strength1 </p>
-         </div>
+        <div class="row4">
+            <img class="mohu4" src="{% static 'FirstLevel/images/strength4.png' %}" alt="">
+            <p>strength2</p>
+        </div>
+    </div>
 
-         <div class="row4">
-           <img class="mohu4" src="{% static 'FirstLevel/images/strength4.png' %}" alt="">
-           <p>strength2</p>
-         </div>
+    <div class="abhi3">
+        <div class="row5">
+            <img class="mohu5" src="{% static 'FirstLevel/images/strength5.jpg' %}" alt="">
+            <p>strength1 </p>
+        </div>
 
- </div>
-
-
- <div class="abhi3">
-         <div class="row5">
-           <img class="mohu5" src="{% static 'FirstLevel/images/strength5.jpg' %}" alt="">
-           <p>strength1 </p>
-         </div>
-
-         <div class="row6">
-           <img class="mohu6" src="{% static 'FirstLevel/images/strength6.png' %}" alt="">
-           <p>strength2</p>
-         </div>
-
- </div>
+        <div class="row6">
+            <img class="mohu6" src="{% static 'FirstLevel/images/strength6.png' %}" alt="">
+            <p>strength2</p>
+        </div>
+    </div>
 
 
- <div class="abhi4">
-         <div class="row7">
-           <img class="mohu7" src="{% static 'FirstLevel/images/strength7.png' %}" alt="">
-           <p>strength1 </p>
-         </div>
+    <div class="abhi4">
+        <div class="row7">
+            <img class="mohu7" src="{% static 'FirstLevel/images/strength7.png' %}" alt="">
+            <p>strength1 </p>
+        </div>
 
-         <div class="row8">
-           <img class="mohu8" src="{% static 'FirstLevel/images/strength8.png' %}" alt="">
-           <p>strength2</p>
-         </div>
+        <div class="row8">
+            <img class="mohu8" src="{% static 'FirstLevel/images/strength8.png' %}" alt="">
+            <p>strength2</p>
+        </div>
+    </div>
 
- </div>
 
+    <div class="abhi5">
+        <div class="row9">
+            <img class="mohu9" src="{% static 'FirstLevel/images/strength9.png' %}" alt="">
+            <p>strength1 </p>
+        </div>
 
- <div class="abhi5">
-         <div class="row9">
-           <img class="mohu9" src="{% static 'FirstLevel/images/strength9.png' %}" alt="">
-           <p>strength1 </p>
-         </div>
-
-         <div class="row10">
-           <img class="mohu10" src="{% static 'FirstLevel/images/strength10.png' %}" alt="">
-           <p>strength2</p>
-         </div>
-
- </div>
+        <div class="row10">
+            <img class="mohu10" src="{% static 'FirstLevel/images/strength10.png' %}" alt="">
+            <p>strength2</p>
+        </div>
+    </div>
 </body>
 </html>
 {% endblock %}

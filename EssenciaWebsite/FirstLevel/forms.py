@@ -2,12 +2,15 @@ from django import forms
 from .models import UserProfileInfo, loginpage
 # we always use .models or .forms to import data from models or forms respectively
 
+YEARS = [x for x in range(1940,2021)]
+
 class UserForm(forms.ModelForm):
     username = forms.CharField()
     email = forms.EmailField()
+    confirm_email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
-    confirm_email = forms.EmailField()
+    birth_date = forms.DateField(widget=forms.SelectDateWidget(years=YEARS))
     First_Name = forms.CharField()
     Last_Name = forms.CharField()
     Emp_ID = forms.CharField()

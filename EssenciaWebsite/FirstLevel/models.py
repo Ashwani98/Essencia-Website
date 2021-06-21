@@ -9,9 +9,10 @@ class UserProfileInfo(models.Model):
     # These name should be similar to the names in forms.py
     username = models.CharField(max_length=30, blank=False, unique=True)
     email = models.EmailField(max_length=60, blank=False, unique=True)
+    confirm_email = models.EmailField(blank=False, unique=True)
     password = models.CharField(max_length=30, blank=False)
     confirm_password = models.CharField(max_length=30, blank=False)
-    confirm_email = models.EmailField(blank=False, unique=True)
+    birth_date = models.DateField(blank=False)
     First_Name = models.CharField(max_length=30, blank=False)
     Last_Name = models.CharField(max_length=30, blank=False)
     Emp_ID = models.CharField(max_length=6, blank=False, unique=True)

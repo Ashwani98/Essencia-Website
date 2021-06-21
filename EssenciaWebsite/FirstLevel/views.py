@@ -33,8 +33,6 @@ def user_logout(request):
 
 # for user register
 def register(request):
-    registered = False
-
     if request.method == 'POST':
         # taking all data from UserForm in user_form
         user_form = UserForm(data=request.POST)
@@ -43,16 +41,16 @@ def register(request):
             # saving the user form
             user = user_form.save()
             user.save()
-
-            registered = True
             return HttpResponseRedirect(reverse('basic_app:after_register'))
         # if there will be an error
         else:
+            user_form = UserForm()
+            return render(request, 'FirstLevel/register.html', {'user_form': user_form, 'Error': 'MAKE SURE PASSWORD or EMAIL MATCHES!!!'})
             print(user_form.errors)
     # for first initialisation of registration page
     else:
         user_form = UserForm()
-    return render(request, 'FirstLevel/register.html', {'user_form': user_form, 'registered': registered})
+    return render(request, 'FirstLevel/register.html', {'user_form': user_form})
 
 # login form / login page
 def user_login(request):
@@ -61,6 +59,8 @@ def user_login(request):
         login_form = LoginForm(data=request.POST)
         # taking to username for the database
         username = request.POST.get('username')
+        password = request.POST.get('password')
+        Emp_id = request.POST.get('Emp_id')
         # Again Checking the form validity
         if login_form.is_valid():
             return render(request, 'FirstLevel/home.html', {'name': username})

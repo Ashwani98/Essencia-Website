@@ -23,7 +23,7 @@ class UserForm(forms.ModelForm):
         vpassword = all_clean_data['confirm_password']
 
         if (vpassword != password) or (email != vemail):
-            raise forms.ValidationError('MAKE SURE PASSWORD or EMAIL MATCHES!!!')
+            raise forms.ValidationError('')
 
 class LoginForm(forms.Form):
     username = forms.CharField()

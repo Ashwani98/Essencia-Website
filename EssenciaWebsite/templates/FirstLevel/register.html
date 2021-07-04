@@ -27,9 +27,9 @@
     </DIV>
     <FORM class="box" style="padding-top: 0px; padding-left:10px; padding-bottom:0px; width:504px; height:425px;" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
-        {{user_form.as_p}}
-
+        <div class="rohan">
+            {{user_form.as_p}}
+        </div>
         <INPUT style="margin-left:200px; margin-right:320px; height:42px; width:139px; font-size: large; text-align:center; padding-left:35px;padding-top:10px;" type="submit" name="" value="Register">
     </FORM>
     <DIV class="error">

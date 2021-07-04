@@ -14,4 +14,5 @@ urlpatterns = [
     path('principle/', views.principle, name='principle'),
     path('whatwedo/', views.whatwedo, name='whatwedo'),
     path('strength/', views.strength, name='strength'),
+    path('excel_upload/', views.simple_upload,name='excel_upload'),
 ]

@@ -1,0 +1,38 @@
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tag}}" role="alert">
+    <p {% if message.tags %} class=""{% endif %}>{{message}}</p>
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Allocation_File</label>
+    <input type="file" name="Allocation">
+    <label>Paid_File</label>
+    <input type="file" name="Paid_File">
+    <button type="submit">Upload</button>
+</form>
+<hr>
+<br>
+<br>
+<table style="border:0px solid black;">
+{% for column in columns %}
+    <th style="border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;">{{column}}</th>
+{% endfor %}
+<tr style="border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+{% for row in excel1 %}
+    {% for col1 in row %}
+    <td style="border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">{{col1}}</td>
+    {% endfor %}
+{% endfor %}
+</tr>
+<tr style="border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+{% for row in excel2 %}
+    {% for col2 in row %}
+        <td style="border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">{{col2}}</td>
+    {% endfor %}
+{% endfor %}
+</tr>
+</table>

@@ -5,3 +5,4 @@ from .models import UserProfileInfo, loginpage
 
 admin.site.register(UserProfileInfo)
 admin.site.register(loginpage)
+

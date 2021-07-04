@@ -52,3 +52,6 @@ body{
     margin-top:478px;
     color:white;
 }
+.rohan input[type="text"],.rohan input[type="text"]{
+    border-radius:50px;
+}

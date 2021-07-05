@@ -1,0 +1,24 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit">Billing</button>
+</form>
+<hr>
+<br>
+<br>
+<table>
+    <tr style="border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+    {% for col in columns %}
+        <th style="border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px" >{{col}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in Billing %}
+        <tr style="border:2px solid black;">
+        {% for j in row %}
+            <td style="border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+{{Total_Payout}}

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from .forms import UserForm, LoginForm
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import logout
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
 import numpy as np
+import os
 
 # Create your views here.
 
@@ -97,20 +98,49 @@ def after_register(request):
 
 
 # to upload a file
-F1 = pd.DataFrame()
-def simple_upload(request):
-    excel_data1 = []
-    excel_data2 = []
+def L_T_MIS(request):
+    excel_data = []
     F1 = pd.DataFrame()
-
     if request.method == 'POST':
         Allocation1 = request.FILES['Allocation']
         Paidfile1 = request.FILES['Paid_File']
+        A = pd.read_excel(Allocation1)
+        B = pd.read_excel(Paidfile1)
+        # for check of file
+        for i in range(0, len(A['AGREEMENTID'])):
+            if pd.isnull(A['AGREEMENTID'][i]) == True:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i,'CUSTOMERNAME'],str)==False:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i,'TC NAME'],str)==False:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i,'TL'],str)==False:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i,'FOS'],str)==False:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i,'AREA'],str)==False:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES'})
+            elif isinstance(A.loc[i,'BKT'],np.int64)==False or pd.isnull(A['BKT'][i]) == True:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'BKT DOES NOT TAKE STR VALUES'})
+            elif isinstance(A.loc[i,'POS'],np.float64)==False or pd.isnull(A['POS'][i]) == True:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES'})
+            elif isinstance(A.loc[i,'EMI'],np.int64)==False or pd.isnull(A['EMI'][i]) == True:
+                print('error',i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES'})
+            else:
+                continue
+
         fs = FileSystemStorage(location='media/L_T/MIS')
         fs.save(Allocation1.name, Allocation1)
         fs.save(Paidfile1.name, Paidfile1)
-        A = pd.read_excel(Allocation1)
-        B = pd.read_excel(Paidfile1)
         print(A.head())
 
         B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
@@ -159,9 +189,7 @@ def simple_upload(request):
                     A.loc[i, 'STATUS'] = 'FORECLOSE'
                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
                     A.loc[i, 'STATUS'] = 'SETTLEMENT'
-
         A['STATUS'].fillna('FLOW', inplace=True)
-
         for i in range(0, len(A['AGREEMENTID'])):
             for j in range(0, len(B1['PAID AMOUNT'])):
                 if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
@@ -248,6 +276,7 @@ def simple_upload(request):
                 i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
 
         for i in range(0, len(F['FLOW_CASES'])):
+            F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
             F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
 
         F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
@@ -259,6 +288,7 @@ def simple_upload(request):
 
         print(F)
         F.to_excel('media/L_T/MIS/Performance_L_T.xlsx',index=False)
+        F.to_excel('media/L_T/Billing/Performance_L_T.xlsx', index=False)
         F1 = F.copy()
 
         for i in range(0, len(A['AGREEMENTID'])):
@@ -276,15 +306,295 @@ def simple_upload(request):
         A.to_excel('media/L_T/TC Performance/MASTER FILE L_T.xlsx', index=False)
         A.to_excel('media/L_T/FOS Salary/MASTER FILE L_T.xlsx', index=False)
         A.to_excel('media/L_T/TC Incentive/MASTER FILE L_T.xlsx', index=False)
+    elif request.method != 'POST':
+        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/Performance_L_T.xlsx'):
+            fs = FileSystemStorage(location='media/L_T/MIS')
+            AA = fs.open('Performance_L_T.xlsx')
+            F1 = pd.read_excel(AA)
+        else:
+            return render(request, 'FirstLevel/upload_excel.html')
 
     C = list(F1.columns)
-    # getting value from each cell in row
-    for row in range (0,len(C)):
-        row_data_1 = list()
-        row_data_2 = list()
-        row_data_1.append(str(F1.loc[0, C[row]]))
-        row_data_2.append(str(F1.loc[1, C[row]]))
-        excel_data1.append(row_data_1)
-        excel_data2.append(row_data_2)
 
-    return render(request,'FirstLevel/upload_excel.html', {'excel1': excel_data1, 'columns': C, 'excel2': excel_data2})
+    for j in range(0, len(F1[C[0]])):
+        row_data = list()
+        for col in range(0,len(C)):
+            row_data.append(str(F1.loc[j,C[col]]))
+        excel_data.append(row_data)
+
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C})
+
+def L_T_BILLING(request):
+    excel_data1 = []
+    F2 = pd.DataFrame()
+    if request.method == 'POST':
+        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/Billing/MASTER FILE L_T.xlsx'):
+            fs = FileSystemStorage(location='media/L_T/Billing')
+            AA = fs.open('Performance_L_T.xlsx')
+            AA1 = fs.open('MASTER FILE L_T.xlsx')
+            AA2 = fs.open('AddPayout.xlsx')
+            AA3 = fs.open('AddResolution.xlsx')
+            AA4 = fs.open('Payout.xlsx')
+            AA5 = fs.open('Resolution.xlsx')
+            P = pd.read_excel(AA)
+            A = pd.read_excel(AA1)
+            PA = pd.read_excel(AA4)
+            R = pd.read_excel(AA5)
+            APA = pd.read_excel(AA2)
+            AR = pd.read_excel(AA3)
+
+            l1 = R.columns
+
+            # =============================================================================
+            # BKT 1
+            # =============================================================================
+
+            for i in range(0, len(A['BKT'])):
+                if A.loc[i, 'BKT'] == 1:
+                    for j in range(0, len(P['BKT'])):
+                        if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
+                            for k in range(0, len(l1)):
+                                if l1[k] == A.loc[i, 'BKT']:
+                                    for l in range(0, len(PA[1])):
+                                        for y in range(0, len(APA[1])):
+                                            if l == 0:
+                                                if (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]) and (P.loc[j, 'Additional_Performance'] < AR.loc[y, l1[k]]):
+                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'NM'):
+                                                        a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = a
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
+                                                    # =============================================================================
+                                                    #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                                    #                                             a=(A.loc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[1]
+                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                                    #                                             A.loc[i,'MOHAK']=a
+                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
+                                                    # =============================================================================
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+                                            elif l > 0:
+                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])) and (P.loc[j, 'Additional_Performance'] < AR.loc[y, l1[k]]):
+                                                    # =============================================================================
+                                                    #                                          if (A.loc[i,'STATUS']=='RB') or (A.loc[i,'STATUS']=='NM'):
+                                                    #                                              c=(A.loc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[1]
+                                                    #                                              A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                                    #                                              A.loc[i,'MOHAK']=int(c)
+                                                    #                                              print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
+                                                    # =============================================================================
+                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
+                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = d
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], d, P.loc[j, 'BKT'])
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+                                            elif l == 6:
+                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])) and ((P.loc[j, 'Additional_Performance'] > AR.loc[y - 1, l1[k]]) and (P.loc[j, 'Additional_Performance'] <= AR.loc[y, l1[k]])):
+                                                    if (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+                                                        c = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]] + APA.loc[y - 1, l1[k]]) / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]] + APA.loc[y - 1, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = c
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], APA.loc[y, l1[k]], c, P.loc[j, 'BKT'])
+                                                    elif A.loc[i, 'STATUS'] == 'SB':
+                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = d
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], APA.loc[y, l1[k]], d, P.loc[j, 'BKT'])
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], APA.loc[y, l1[k]], 0, P.loc[j, 'BKT'])
+
+            # =============================================================================
+            # BKT 2
+            # =============================================================================
+
+            for i in range(0, len(A['BKT'])):
+                if A.loc[i, 'BKT'] == 2:
+                    for j in range(0, len(P['BKT'])):
+                        if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
+                            for k in range(0, len(l1)):
+                                if l1[k] == A.loc[i, 'BKT']:
+                                    for l in range(0, len(PA[2])):
+                                        for y in range(0, len(APA[1])):
+                                            if l == 0:
+                                                if (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]) and (P.loc[j, 'Additional_Performance'] < AR.loc[y, l1[k]]):
+                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+                                                        a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = a
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
+                                                    # =============================================================================
+                                                    #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                                    #                                             a=(A.oc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[2]
+                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                                    #                                             A.loc[i,'MOHAK']=a
+                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
+                                                    # =============================================================================
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+                                            elif l > 0:
+                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])) and (P.loc[j, 'Additional_Performance'] < AR.loc[y, l1[k]]):
+                                                    # =============================================================================
+                                                    #                                         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                                    #                                             c=(A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100)+APA[2]
+                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                                    #                                             A.loc[i,'MOHAK']=int(c)
+                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
+                                                    # =============================================================================
+                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
+                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = d
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], d, P.loc[j, 'BKT'])
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+                                            # elif l>0:
+                                            #     if ((P.loc[j,'POS_RES%']>R.loc[l-1,l1[k]]) and (P.loc[j,'POS_RES%']<=R.loc[l,l1[k]])) and \
+                                            #     ((P.loc[j,'Additional_Performance']>AR.loc[y-1,l1[k]]) and (P.loc[j,'Additional_Performance']<=AR.loc[y,l1[k]])):
+                                            #         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                            #             c=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])/100
+                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])+'%'
+                                            #             A.loc[i,'MOHAK']=c
+                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],APA.loc[y,l1[k]],c,P.loc[j,'BKT'])
+                                            #         elif A.loc[i,'STATUS']=='SB':
+                                            #             d=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100
+                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                            #             A.loc[i,'MOHAK']=d
+                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],d,P.loc[j,'BKT'])
+                                            #         else:
+                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                            #             A.loc[i,'MOHAK']=0
+                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],0,P.loc[j,'BKT'])
+
+            # =============================================================================
+            # BKT 3
+            # =============================================================================
+
+            for i in range(0, len(A['BKT'])):
+                if A.loc[i, 'BKT'] == 3:
+                    for j in range(0, len(P['BKT'])):
+                        if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
+                            for k in range(0, len(l1)):
+                                if l1[k] == A.loc[i, 'BKT']:
+                                    for l in range(0, len(PA[3])):
+                                        for y in range(0, len(APA[1])):
+                                            if l == 0:
+                                                if (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]) and (P.loc[j, 'Additional_Performance'] < AR.loc[y, l1[k]]):
+                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+                                                        a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = a
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
+                                                    # =============================================================================
+                                                    #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                                    #                                             a=(A.oc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[2]
+                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                                    #                                             A.loc[i,'MOHAK']=a
+                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
+                                                    # =============================================================================
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+                                            elif l > 0:
+                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])) and (P.loc[j, 'Additional_Performance'] < AR.loc[y, l1[k]]):
+                                                    # =============================================================================
+                                                    #                                         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                                    #                                             c=(A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100)+APA[2]
+                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                                    #                                             A.loc[i,'MOHAK']=int(c)
+                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
+                                                    # =============================================================================
+                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
+                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = d
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], d, P.loc[j, 'BKT'])
+                                                    else:
+                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+                                                        A.loc[i, 'MOHAK'] = 0
+                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+                                            # elif l>0 and y>0:
+                                            #     if ((P.loc[j,'POS_RES%']>R.loc[l-1,l1[k]]) and (P.loc[j,'POS_RES%']<=R.loc[l,l1[k]])) and \
+                                            #     ((P.loc[j,'Additional_Performance']>AR.loc[y-1,l1[k]]) and (P.loc[j,'Additional_Performance']<=AR.loc[y,l1[k]])):
+                                            #         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+                                            #             c=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])/100
+                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])+'%'
+                                            #             A.loc[i,'MOHAK']=c
+                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],APA.loc[y,l1[k]],c,P.loc[j,'BKT'])
+                                            #         elif A.loc[i,'STATUS']=='SB':
+                                            #             d=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100
+                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                            #             A.loc[i,'MOHAK']=d
+                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],d,P.loc[j,'BKT'])
+                                            #         else:
+                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+                                            #             A.loc[i,'MOHAK']=0
+                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],0,P.loc[j,'BKT'])
+
+            # =============================================================================
+            # SETTLEMENT
+            # =============================================================================
+
+            for i in range(0, len(A['BKT'])):
+                if A.loc[i, 'STATUS'] == 'SETTLEMENT':
+                    dd = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
+                    A.loc[i, 'MOHAK'] = dd
+                    A.loc[i, 'PERCENTAGE'] = str(12) + '%'
+                elif A.loc[i, 'STATUS'] == 'FORECLOSE':
+                    dd = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
+                    A.loc[i, 'MOHAK'] = dd
+                    A.loc[i, 'PERCENTAGE'] = str(20) + '%'
+            # =============================================================================
+            #     elif (A.loc[i,'BKT']==2 or A.loc[i,'BKT']==3) and A.loc[i,'STATUS']=='FORECLOSE':
+            #         c=A.loc[i,'TOTAL COLLECTABLE']*16/100
+            #         A.loc[i,'MOHAK']=c
+            # =============================================================================
+
+            A['MOHAK'].replace(np.nan, 0, inplace=True)
+
+            A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
+
+
+            A.to_excel('media/L_T/Billing/Final_Billing_L_T.xlsx', index=False)
+
+            F = pd.DataFrame(A.groupby('BKT')['PAYOUT'].sum()).reset_index()
+            for i in range(0,len(F['PAYOUT'])):
+                F.loc[i,'PAYOUT']=round(F.loc[i,'PAYOUT'],2)
+            F.to_excel('media/L_T/Billing/BKT_Billing_L_T.xlsx', index=False)
+            F2 = F.copy()
+
+            Total_Payout = round(sum(A['PAYOUT']),2)
+
+        else:
+            return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
+
+
+    elif request.method != 'POST':
+        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/Billing/Final_Billing_L_T.xlsx'):
+            fs = FileSystemStorage(location='media/L_T/Billing')
+            AA = fs.open('BKT_Billing_L_T.xlsx')
+            F2 = pd.read_excel(AA)
+            Total_Payout = round(sum(F2['PAYOUT']),2)
+        else:
+            return render(request, 'FirstLevel/Billing.html')
+
+    C1 = list(F2.columns)
+
+    for j in range(0, len(F2[C1[0]])):
+        row_data1 = list()
+        for col in range(0, len(C1)):
+            row_data1.append(str(F2.loc[j, C1[col]]))
+        excel_data1.append(row_data1)
+
+    return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout})

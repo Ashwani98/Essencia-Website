@@ -28,3 +28,24 @@ class loginpage(models.Model):
     password = models.CharField(max_length=30, blank=False)
     username = models.CharField(max_length=30, blank=False)
     Emp_ID = models.CharField(max_length=6, blank=True)
+
+
+
+class Employee(models.Model):
+    NAMES = models.CharField(max_length=50, unique=True, null=False)
+    EMPLOYEE_ID = models.CharField(max_length=4, unique=True, null=False)
+    MANAGER_ID = models.CharField(max_length=4, null=True)
+    MANAGEMENT_LEVEL = models.CharField(max_length=20, null=False)
+    DESIGNATION = models.CharField(max_length=20, null=False)
+    STAFF = models.CharField(max_length=7 ,null=False)
+    EMPLOYEE_STATUS = models.CharField(max_length=20, null=False)
+    PROCESS = models.CharField(max_length=20, null=False)
+    DEPARTMENT = models.CharField(max_length=15, null=False)
+    TYPE_OF_SALARY = models.CharField(max_length=30, null=False)
+    SALARY = models.IntegerField(null=False)
+    DATE_OF_BIRTH = models.DateField(null=False)
+    LOCATION_ID = models.CharField(max_length=10, null=True)
+    PHONE_NUMBER = models.IntegerField(null=False)
+    HIRE_DATE = models.DateField(null=False)
+    END_DATE = models.DateField(null=True)
+    DEPARTMENT_ID = models.CharField(max_length=10,null=True)

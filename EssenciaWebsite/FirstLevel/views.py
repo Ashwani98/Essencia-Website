@@ -8,6 +8,11 @@ import pandas as pd
 import numpy as np
 import os
 
+from .models import Employee
+from .resources import EmployeeResources
+from django.contrib import messages
+from tablib import Dataset
+
 # Create your views here.
 
 # front Page
@@ -63,8 +68,6 @@ def user_login(request):
         login_form = LoginForm(data=request.POST)
         # taking to username for the database
         username = request.POST.get('username')
-        password = request.POST.get('password')
-        Emp_id = request.POST.get('Emp_id')
         # Again Checking the form validity
         if login_form.is_valid():
             return render(request, 'FirstLevel/home.html', {'name': username})
@@ -95,6 +98,26 @@ def after_register(request):
         re= 'THANKS FOR REGISTER'
         login_form = LoginForm()
     return render(request, 'FirstLevel/login.html', {'login_form': login_form,'re':re})
+
+
+def employee_database(request):
+    if request.method == 'POST':
+        person_resource = EmployeeResources()
+        dataset=Dataset()
+        new_person=request.FILES['employee']
+
+        if not new_person.name.endswith('xlsx'):
+            messages.info(request,'wrong formate')
+            return render(request,'FirstLevel/employee_database.html')
+        imported_data = dataset.load(new_person.read(),format='xlsx')
+        for data in imported_data:
+            value = Employee(
+                data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10],
+                data[11], data[12], data[13], data[14], data[15], data[16])
+            value.save()
+    return render(request,'FirstLevel/employee_database.html')
+
+
 
 
 # to upload a file
@@ -598,3 +621,4 @@ def L_T_BILLING(request):
         excel_data1.append(row_data1)
 
     return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout})
+

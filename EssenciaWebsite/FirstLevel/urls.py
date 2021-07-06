@@ -14,6 +14,7 @@ urlpatterns = [
     path('principle/', views.principle, name='principle'),
     path('whatwedo/', views.whatwedo, name='whatwedo'),
     path('strength/', views.strength, name='strength'),
-    path('L_T_MIS/', views.L_T_MIS,name='L_T_MIS'),
-    path('L_T_Billing/', views.L_T_BILLING,name='L_T_BILLING'),
+    path('L_T_MIS/', views.L_T_MIS, name='L_T_MIS'),
+    path('L_T_Billing/', views.L_T_BILLING, name='L_T_BILLING'),
+    path('Employee_database/', views.employee_database, name='employee_database'),
 ]

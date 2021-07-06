@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfileInfo, loginpage
+from .models import UserProfileInfo, loginpage, Employee
 # we always use .models or .forms to import data from models or forms respectively
 
 YEARS = [x for x in range(1940,2021)]
@@ -24,8 +24,22 @@ class UserForm(forms.ModelForm):
         vemail = all_clean_data['confirm_email']
         password = all_clean_data['password']
         vpassword = all_clean_data['confirm_password']
+        emp_id = all_clean_data['Emp_ID']
+        date_of_birth = all_clean_data['birth_date']
 
         if (vpassword != password) or (email != vemail):
+            raise forms.ValidationError('')
+        elif (vpassword == password) or (email == vemail):
+            EE = Employee.objects.order_by('NAMES')
+            for E in EE:
+                employeeid = E.EMPLOYEE_ID
+                dateofbirth = E.DATE_OF_BIRTH
+                print(employeeid)
+                print(dateofbirth)
+                if (emp_id != employeeid) or (date_of_birth != dateofbirth):
+                    continue
+                else:
+                    return
             raise forms.ValidationError('')
 
 class LoginForm(forms.Form):

@@ -52,6 +52,62 @@ body{
     margin-top:478px;
     color:white;
 }
-.rohan input[type="text"],.rohan input[type="text"]{
+
+.rohan input[type="text"] {
     border-radius:50px;
+    margin-left:50px;
+}
+.rohan input[type="password"]{
+    border-radius:50px;
+    margin-left:50px;
+    height:20px;
+}
+
+.rohan input[type="email"]{
+    border-radius:50px;
+    height:20px;
+}
+#id_First_Name{
+    height:20px;
+}
+#id_Last_Name{
+    height:20px;
+}
+#id_username{
+    margin-left:53px;
+    height:20px;
+
+}
+
+#id_email{
+    margin-left:80px;
+        height:20px;
+
+}
+
+#id_confirm_email{
+    margin-left:25px;
+     height:20px;
+
+}
+
+#id_confirm_password{
+    margin-left:2px;
+        height:20px;
+
+}
+
+#id_password{
+    margin-left:57px;
+        height:20px;
+
+}
+
+#id_Emp_ID{
+    margin-left:70px;
+    height:20px;
+}
+
+#id_birth_date_month{
+    margin-left:57px;
 }

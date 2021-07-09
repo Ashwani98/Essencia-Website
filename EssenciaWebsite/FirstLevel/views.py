@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import UserForm, LoginForm
 from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
@@ -68,9 +68,20 @@ def user_login(request):
         login_form = LoginForm(data=request.POST)
         # taking to username for the database
         username = request.POST.get('username')
+        empp = request.POST.get('Emp_ID')
+
+        EE = Employee.objects.order_by('NAMES')
+        for E in EE:
+            employeeid = E.EMPLOYEE_ID
+            print(employeeid)
+            if (empp != employeeid):
+                continue
+            else:
+                D = E.DESIGNATION
+
         # Again Checking the form validity
         if login_form.is_valid():
-            return render(request, 'FirstLevel/home.html', {'name': username})
+            return render(request, 'FirstLevel/home.html', {'name': username, 'Designation':D})
         else:
             login_form = LoginForm()
             return render(request, 'FirstLevel/login.html', {'login_form': login_form,

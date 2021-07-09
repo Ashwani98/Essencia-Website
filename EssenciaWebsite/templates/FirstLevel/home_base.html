@@ -28,15 +28,12 @@
     </style>
 </head>
 <body>
-{% if Designation == 'ADMIN' %}
+{% if Designation == 'ADMIN' and PROCESS == 'IDFC' %}
     <NAV style="margin-top:0px;width:1400px;height:100px;margin-bottom:0px;">
         <UL class="img1">
             <A href="#"><IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100"></A>
         </UL>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
-            <LI>
-                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
-            </LI>
             <LI>
                 <A HREF="#"><STRONG>SALARIES</STRONG></A>
             </LI>
@@ -47,7 +44,7 @@
                 <A href=#><STRONG>ANALYSIS</STRONG></A>
             </LI>
             <LI>
-                <A HREF= "{% url 'basic_app:L_T_MIS' %}"><STRONG>FILE MANAGEMENT</STRONG></A>
+                <A HREF= "{% url 'basic_app:IDFC_TW_MIS' %}"><STRONG>FILE MANAGEMENT</STRONG></A>
             </LI>
             <LI>
                 <A HREF= "{% url 'basic_app:employee_database' %}"><STRONG>EMPLOYEES</STRONG></A>

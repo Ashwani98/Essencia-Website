@@ -633,3 +633,244 @@ def L_T_BILLING(request):
 
     return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout})
 
+def IDFC_TW_MIS(request):
+    excel_data = []
+    F1 = pd.DataFrame()
+
+    if request.method == 'POST':
+        Allocation1 = request.FILES['Allocation']
+        Paidfile1 = request.FILES['Paid_File']
+        A = pd.read_excel(Allocation1)
+        B = pd.read_excel(Paidfile1)
+        # for check of file
+
+        for i in range(0, len(A['AGREEMENTID'])):
+            if pd.isnull(A['AGREEMENTID'][i]) == True:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i, 'CUSTOMERNAME'], str) == False:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i, 'TC NAME'], str) == False:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i, 'TL'], str) == False:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i, 'FOS'], str) == False:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES'})
+            elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i, 'AREA'], str) == False:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES'})
+            elif isinstance(A.loc[i, 'BKT'], np.int64) == False or pd.isnull(A['BKT'][i]) == True:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'BKT DOES NOT TAKE STR VALUES'})
+            elif isinstance(A.loc[i, 'POS'], np.float64) == False or pd.isnull(A['POS'][i]) == True:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES'})
+            elif isinstance(A.loc[i, 'EMI'], np.float64) == False or pd.isnull(A['EMI'][i]) == True:
+                print('error', i)
+                return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES'})
+            else:
+                continue
+
+        fs = FileSystemStorage(location='media/IDFC_TW/MIS')
+        fs.save(Allocation1.name, Allocation1)
+        fs.save(Paidfile1.name, Paidfile1)
+        print(A.head())
+
+        B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
+
+        for i in range(0, len(A['AGREEMENTID'])):
+            for k in range(0, len(B['AGREEMENTID'])):
+                if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and ((B.loc[k, 'AGAINST'] != 'FORECLOSE') and (B.loc[k, 'AGAINST'] != 'SETTLEMENT')):
+                    for j in range(0, len(B1['AGREEMENTID'])):
+                        if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+                            if A.loc[i, 'BKT'] == 0:
+                                if B.loc[k, 'AGAINST'] == 'RT':
+                                    A.loc[i, 'STATUS'] == 'RT'
+                                elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']:
+                                    A.loc[i, 'STATUS'] = 'SB'
+                                elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+                                    A.loc[i, 'STATUS'] = 'PART PAID'
+                                else:
+                                    A.loc[i, 'STATUS'] = 'UNPAID'
+                            elif A.loc[i, 'BKT'] != 1:
+                                a = (A.loc[i, 'BKT'] + 1) * A.loc[i, 'EMI']
+                                b = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+                                if B.loc[k, 'AGAINST'] == 'RT':
+                                    A.loc[i, 'STATUS'] = 'RT'
+                                elif (B1.loc[j, 'PAID AMOUNT'] >= a) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
+                                    A.loc[i, 'STATUS'] = 'NM'
+                                elif (B1.loc[j, 'PAID AMOUNT'] >= b) and ((B1.loc[j, 'PAID AMOUNT'] < a) and (B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'POS'])):
+                                    A.loc[i, 'STATUS'] = 'RB'
+                                elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < b):
+                                    A.loc[i, 'STATUS'] = 'SB'
+                                elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+                                    A.loc[i, 'STATUS'] = 'PART PAID'
+                            elif A.loc[i, 'BKT'] == 1:
+                                b = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+                                if B.loc[k, 'AGAINST'] == 'RT':
+                                    A.loc[i, 'STATUS'] = 'RT'
+                                elif B1.loc[j, 'PAID AMOUNT'] >= b:
+                                    A.loc[i, 'STATUS'] = 'RB'
+                                elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < b):
+                                    A.loc[i, 'STATUS'] = 'SB'
+                                elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+                                    A.loc[i, 'STATUS'] = 'PART PAID'
+                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
+                    A.loc[i, 'STATUS'] = 'FORECLOSE'
+                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
+                    A.loc[i, 'STATUS'] = 'SETTLEMENT'
+        A['STATUS'].fillna('FLOW', inplace=True)
+        for i in range(0, len(A['AGREEMENTID'])):
+            for j in range(0, len(B1['PAID AMOUNT'])):
+                if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+                    A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
+
+        M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['POS'].sum()).reset_index()
+
+        M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
+
+        R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['AGREEMENTID'].count()).reset_index()
+
+        F = M.merge(R, how='outer')
+
+        F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+
+        R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+
+        P = F.copy()
+
+        P = P.iloc[:, :3]
+
+        P['FLOW'] = np.nan
+        P['SB'] = np.nan
+        P['RB'] = np.nan
+        P['NM'] = np.nan
+        P['PART PAID'] = np.nan
+        P['FORECLOSE'] = np.nan
+        P['SETTLEMENT'] = np.nan
+        P['RT'] = np.nan
+
+        COL = P.columns
+
+        for i in range(0, len(R1['COMPANY'])):
+            for j in range(0, len(P['COMPANY'])):
+                for k in range(0, len(COL)):
+                    if ((R1.loc[i, ['COMPANY', 'BKT', 'STATE']] == P.loc[j, ['COMPANY', 'BKT', 'STATE']]).all()) and (R1.loc[i, 'STATUS'] == COL[k]):
+                        P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+
+        F = F.merge(P, how='outer')
+
+        F.fillna(0, inplace=True)
+
+        F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
+                'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES', 'RT': 'RT_CASES'},
+             axis=1, inplace=True)
+
+        R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE', 'STATUS'])['POS'].sum()).reset_index()
+
+        for i in range(0, len(R2['COMPANY'])):
+            for j in range(0, len(P['COMPANY'])):
+                for k in range(0, len(COL)):
+                    if ((R2.loc[i, ['COMPANY', 'BKT', 'STATE']] == P.loc[j, ['COMPANY', 'BKT', 'STATE']]).all()) and (R2.loc[i, 'STATUS'] == COL[k]):
+                        P.loc[j, COL[k]] = R2.loc[i, 'POS']
+
+        F = F.merge(P, how='outer')
+
+        F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
+              'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS', 'RT': 'RT_POS'}, axis=1, inplace=True)
+
+        F.fillna(0, inplace=True)
+
+        for i in range(0, len(F['FLOW_CASES'])):
+            F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'RT_POS%'] = round((F.loc[i, 'RT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+
+        TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['TOTAL PAID'].sum()).reset_index()
+
+        F = F.merge(TP, how='outer')
+
+        for i in range(0, len(F['SB_POS'])):
+            F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + F.loc[i, 'NM_POS%'] + F.loc[i, 'SETTLEMENT_POS%'] + F.loc[i, 'RT_POS%']
+            F.loc[i, 'Additional_Performance'] = F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%']
+
+        for i in range(0, len(F['FLOW_CASES'])):
+            F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
+            F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
+
+        F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
+              'SETTLEMENT_CASES': 'SC_CASES',
+              'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
+              'FORECLOSE_POS%': 'FC_POS%',
+              'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1, inplace=True)
+
+        print(F)
+        F.to_excel('media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx', index=False)
+        F.to_excel('media/IDFC_TW/Billing/Performance_IDFC_TW.xlsx', index=False)
+        F1 = F.copy()
+
+        for i in range(0, len(A['AGREEMENTID'])):
+            s = 0
+            for j in range(0, len(B['AGREEMENTID'])):
+                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and ((A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'SB')) and ((B.loc[j, 'MODE'] != 'ECS') and (B.loc[j, 'MODE'] != 'ADJUSTED')):
+                    s = s + B.loc[j, 'PAID AMOUNT']
+            A.loc[i, 'Billing PAID AMT.'] = s
+        for i in range(0, len(A['STATE'])):
+            if A.loc[i, 'STATUS'] == 'SB':
+                if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
+                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+        for i in range(0, len(A['AGREEMENTID'])):
+            if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'TOTAL PAID']
+        for i in range(0, len(A['STATE'])):
+            if A.loc[i, 'STATUS'] == 'SB':
+                if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
+                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+
+        F.to_excel(r'media/IDFC_TW/MIS/MIS_IDFC_TW.xlsx', index=False)
+
+        F.replace(np.nan, 0, inplace=True)
+
+        F.to_excel(r'media/IDFC_TW/Billing/Performance_IDFC_TW.xlsx', index=False)
+
+        for i in range(0, len(A['AGREEMENTID'])):
+            s = 0
+            for j in range(0, len(B['AGREEMENTID'])):
+                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and ((A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'SB')) and ((B.loc[j, 'MODE'] != 'ECS') and (B.loc[j, 'MODE'] != 'ADJUSTED')):
+                    s = s + B.loc[j, 'PAID AMOUNT']
+            A.loc[i, 'Billing PAID AMT.'] = s
+
+        A.to_excel(r'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/TC Performance/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/FOS Salary/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx', index=False)
+
+    elif request.method != 'POST':
+        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/Performance_L_T.xlsx'):
+            fs = FileSystemStorage(location='media/IDFC_TW/MIS')
+            AA = fs.open('Performance_IDFC_TW.xlsx')
+            F1 = pd.read_excel(AA)
+        else:
+            return render(request, 'FirstLevel/upload_excel.html')
+
+    C = list(F1.columns)
+
+    for j in range(0, len(F1[C[0]])):
+        row_data = list()
+        for col in range(0, len(C)):
+            row_data.append(str(F1.loc[j, C[col]]))
+        excel_data.append(row_data)
+
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C})
+
+

@@ -30,7 +30,6 @@ class loginpage(models.Model):
     Emp_ID = models.CharField(max_length=6, blank=True)
 
 
-
 class Employee(models.Model):
     NAMES = models.CharField(max_length=50, unique=True, null=False)
     EMPLOYEE_ID = models.CharField(max_length=4, unique=True, null=False)

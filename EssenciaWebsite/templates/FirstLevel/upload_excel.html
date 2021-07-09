@@ -5,7 +5,7 @@
 </div>
 {% endfor %}
 {% endif %}
-<form method="post", action="", enctype="multipart/form-data">
+<form method="post", enctype="multipart/form-data">
     {% csrf_token %}
     <label>Allocation_File</label>
     <input type="file" name="Allocation">
